@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Besplatna transkripcija audia u tekst bez clouda: zašto mi jedan model nije bio dovoljan – TechPuls</title>
-<meta name="description" content="Autor je usporedio 32 konfiguracije ASR-a i složio lokalni cascade iz dvaju modela: GigaAM-a za osnovu teksta i Parakeeta za ispravljanje termina, čime je na vlastitim datasetima smanjio WER s 27,0% na 21,7%. To je važno jer pokazuje da za kvalitetnu lokalnu transkripciju nije dovoljan samo jedan model, nego kombinacija koja bolje čuva i običan razgovor i tehničke termine.">
+<meta name="description" content="Autor je na vlastitim podacima usporedio 32 konfiguracije ASR-a i otkrio da lokalna transkripcija bolje radi kad se kombiniraju dva modela, a ne kad se vjeruje samo jednom. Cascade od GigaAM-a i Parakeeta smanjio je WER s 27,0% na 21,7%, uz bolji balans između običnog govora i tehničkih termina.">
 <meta property="og:site_name" content="TechPuls">
 <meta property="og:title" content="Besplatna transkripcija audia u tekst bez clouda: zašto mi jedan model nije bio dovoljan – TechPuls">
-<meta property="og:description" content="Autor je usporedio 32 konfiguracije ASR-a i složio lokalni cascade iz dvaju modela: GigaAM-a za osnovu teksta i Parakeeta za ispravljanje termina, čime je na vlastitim datasetima smanjio WER s 27,0% na 21,7%. To je važno jer pokazuje da za kvalitetnu lokalnu transkripciju nije dovoljan samo jedan model, nego kombinacija koja bolje čuva i običan razgovor i tehničke termine.">
-<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
+<meta property="og:description" content="Autor je na vlastitim podacima usporedio 32 konfiguracije ASR-a i otkrio da lokalna transkripcija bolje radi kad se kombiniraju dva modela, a ne kad se vjeruje samo jednom. Cascade od GigaAM-a i Parakeeta smanjio je WER s 27,0% na 21,7%, uz bolji balans između običnog govora i tehničkih termina.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/img/70.jpg">
 <meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/70/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://zg2000fs.github.io/techpuls/c/70/">
@@ -28,8 +28,8 @@
 <article class="post">
   <p class="meta"><a href="../../">← Svi članci</a> · 17. listopada 2026. · Habr</p>
   <h1>Besplatna transkripcija audia u tekst bez clouda: zašto mi jedan model nije bio dovoljan</h1>
-  
-  <p class="lead">Autor je usporedio 32 konfiguracije ASR-a i složio lokalni cascade iz dvaju modela: GigaAM-a za osnovu teksta i Parakeeta za ispravljanje termina, čime je na vlastitim datasetima smanjio WER s 27,0% na 21,7%. To je važno jer pokazuje da za kvalitetnu lokalnu transkripciju nije dovoljan samo jedan model, nego kombinacija koja bolje čuva i običan razgovor i tehničke termine.</p>
+  <img class="hero" src="../../assets/img/70.jpg" alt="" width="1200" height="675">
+  <p class="lead">Autor je na vlastitim podacima usporedio 32 konfiguracije ASR-a i otkrio da lokalna transkripcija bolje radi kad se kombiniraju dva modela, a ne kad se vjeruje samo jednom. Cascade od GigaAM-a i Parakeeta smanjio je WER s 27,0% na 21,7%, uz bolji balans između običnog govora i tehničkih termina.</p>
   
   <div class="body"><p>Provodim velik dio radnog dana na sastancima i raspravama. Kad mi se rodilo dijete i kad su krenule neprospavane noći, počeo sam propuštati detalje. Koji je rok bio spomenut? Tko je obećao vratiti se s odgovorom? O čemu smo se na kraju dogovorili?</p>
 <p>Tako je počela priča o <strong>Recorderu</strong>. Isprva sam mislio kupiti gotovo gotovu aplikaciju. Zatim sam počeo uspoređivati Whisper, Parakeet i GigaAM. Na kraju sam testirao <strong>32 konfiguracije prepoznavanja</strong> i složio <strong>cascade od dviju modela</strong>: jedna daje osnovu teksta, druga ispravlja netočnosti. Na mojim datasetima to je popravilo svaku petu grešku (<strong>WER</strong> je pao s <strong>27,0% na 21,7%</strong>).</p>
