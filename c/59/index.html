@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GLM 5.3 Flash i DeepSeek V4.1 Flash postali su besplatni u OpenCodeu – TechPuls</title>
-<meta name="description" content="OpenCode je omogućio besplatan pristup modelu GLM 5.3 Flash, a nešto ranije i DeepSeeku V4.1 Flash, te ih je dodao u katalog kao zasebne besplatne verzije. Autor navodi da su troškovi ulaznih, izlaznih i cache tokena za te modele nula, ali da je besplatni pristup privremen i bez navedenog datuma isteka. Zaključuje da se modeli mogu koristiti izravno u IDE-u preko AI dodatka, uz mogućnost prelaska na druge agente ako zadatak to zahtijeva.">
+<meta name="description" content="U OpenCodeu je besplatan pristup dobio GLM 5.3 Flash, a malo prije toga i DeepSeek V4.1 Flash, pa su oba modela sada dostupna u katalogu i mogu se odmah koristiti za rad na projektu. To je važno jer se agent može pokretati izravno u IDE-u, a pod uvjetom da provajderi ne spremaju upite i ne koriste ih za trening, što olakšava testiranje AI workflowa bez dodatnih troškova.">
 <meta property="og:site_name" content="TechPuls">
 <meta property="og:title" content="GLM 5.3 Flash i DeepSeek V4.1 Flash postali su besplatni u OpenCodeu – TechPuls">
-<meta property="og:description" content="OpenCode je omogućio besplatan pristup modelu GLM 5.3 Flash, a nešto ranije i DeepSeeku V4.1 Flash, te ih je dodao u katalog kao zasebne besplatne verzije. Autor navodi da su troškovi ulaznih, izlaznih i cache tokena za te modele nula, ali da je besplatni pristup privremen i bez navedenog datuma isteka. Zaključuje da se modeli mogu koristiti izravno u IDE-u preko AI dodatka, uz mogućnost prelaska na druge agente ako zadatak to zahtijeva.">
+<meta property="og:description" content="U OpenCodeu je besplatan pristup dobio GLM 5.3 Flash, a malo prije toga i DeepSeek V4.1 Flash, pa su oba modela sada dostupna u katalogu i mogu se odmah koristiti za rad na projektu. To je važno jer se agent može pokretati izravno u IDE-u, a pod uvjetom da provajderi ne spremaju upite i ne koriste ih za trening, što olakšava testiranje AI workflowa bez dodatnih troškova.">
 <meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
 <meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/59/">
 <meta name="twitter:card" content="summary_large_image">
@@ -29,9 +29,47 @@
   <p class="meta"><a href="../../">← Svi članci</a> · 16. listopada 2026. · Habr vijesti</p>
   <h1>GLM 5.3 Flash i DeepSeek V4.1 Flash postali su besplatni u OpenCodeu</h1>
   
-  <p class="lead">OpenCode je omogućio besplatan pristup modelu GLM 5.3 Flash, a nešto ranije i DeepSeeku V4.1 Flash, te ih je dodao u katalog kao zasebne besplatne verzije. Autor navodi da su troškovi ulaznih, izlaznih i cache tokena za te modele nula, ali da je besplatni pristup privremen i bez navedenog datuma isteka. Zaključuje da se modeli mogu koristiti izravno u IDE-u preko AI dodatka, uz mogućnost prelaska na druge agente ako zadatak to zahtijeva.</p>
+  <p class="lead">U OpenCodeu je besplatan pristup dobio GLM 5.3 Flash, a malo prije toga i DeepSeek V4.1 Flash, pa su oba modela sada dostupna u katalogu i mogu se odmah koristiti za rad na projektu. To je važno jer se agent može pokretati izravno u IDE-u, a pod uvjetom da provajderi ne spremaju upite i ne koriste ih za trening, što olakšava testiranje AI workflowa bez dodatnih troškova.</p>
   
-  <div class="body"></div>
+  <div class="body"><h2>U OpenCodeu su postali besplatni GLM 5.3 Flash i DeepSeek V4.1 Flash</h2>
+<p>U OpenCodeu su otvorili besplatan pristup modelu <strong>GLM 5.3 Flash</strong>. Nedugo prije toga besplatan je postao i <strong>DeepSeek V4.1 Flash</strong>. Oba modela već su dostupna u katalogu: možete odabrati onaj koji vam više odgovara i prepustiti agentu rad na projektu.</p>
+<p>Uz naš <strong>Meta Harness</strong> možete ih koristiti izravno u IDE-u: zadajte zadatak, pogledajte promjene u editoru, pokrenite aplikaciju i provjerite rezultat. Ako će zadatak zahtijevati neki drugi alat, ovdje možete odabrati i <strong>Claude Code</strong>, <strong>Codex</strong> ili neki drugi podržani agent.</p>
+<h2>Što je postalo besplatno</h2>
+<p>Na popisu modela u OpenCodeu pojavile su se dvije zasebne besplatne verzije:</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Identifikator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GLM 5.3 Flash Free</td>
+<td><code>glm-5.3-flash-free</code></td>
+</tr>
+<tr>
+<td>DeepSeek V4.1 Flash Free</td>
+<td><code>deepseek-v4.1-flash-free</code></td>
+</tr>
+</tbody>
+</table>
+<p>OpenCode za njih navodi <strong>nultu cijenu</strong> ulaznih, izlaznih i iz cachea pročitanih tokena. Besplatan pristup je privremen; datum njegovog završetka u dokumentaciji nije naveden. Prema <strong>uvjetima OpenCodea</strong>, pružatelji tih dvaju modela ne pohranjuju upite i ne koriste ih za treniranje.</p>
+<h2>Kako pokrenuti u OpenIDE-u</h2>
+<p>Naš AI dodatak povezuje vanjske agente putem <strong>ACP-a</strong>. U slučaju ovih modela spajamo OpenCode i zatim unutar njega biramo željeni model.</p>
+<ol>
+<li>Otvorite projekt u <strong>OpenIDE Pro</strong> i panel <strong>AI for OpenIDE</strong>.</li>
+<li>Odaberite <strong>OpenCode</strong> u katalogu agenata. Ako još nije instaliran, dodatak će vam pomoći instalirati ga i pripadajuće okruženje.</li>
+<li>Na popisu modela odaberite <strong>GLM 5.3 Flash Free</strong> ili <strong>DeepSeek V4.1 Flash Free</strong>. Obratite pozornost na oznaku <strong>Free</strong>: plaćene verzije i dalje ostaju u katalogu.</li>
+<li>Postavite zadatak u chatu i pratite promjene izravno u projektu.</li>
+</ol>
+<h2>Agent uz sve alate IDE-a</h2>
+<p>Ako prvi put čujete za <strong>OpenIDE</strong>, riječ je o višejezičnom development okruženju na IntelliJ platformi. U njemu možete raditi s Javasom, Kotlinom, Goom, Pythonom, PHP-om, JavaScriptom i TypeScriptom. Uz editor su dostupni debuger, Git klijent, klijent baza podataka, Docker i HTTP klijent.</p>
+<p>Upravo je to za nas smisao AI dodatka. Agent unosi promjene, a vi odmah možete proučiti diff, ručno ispraviti kod, provjeriti podatke u bazi ili podignuti okruženje kroz <strong>Docker Compose</strong>. Ako nakon još jednog „sve je gotovo” aplikacija i dalje ne radi, stavimo breakpoint i riješimo problem uobičajenim alatima. Za web aplikacije dostupan je i ugrađeni preglednik.</p>
+<p>Pritom vi birate alat prema zadatku. Možete početi s besplatnim <strong>GLM-om</strong> ili <strong>DeepSeekom</strong> u OpenCodeu, a za složeniji posao prebaciti se na <strong>Claude Code</strong>, <strong>Codex</strong> ili neki drugi agent. Projekt i development alati ostaju u istom IDE-u, a pristup modelima određuju uvjeti odabrane usluge.</p>
+<p>AI dodatak uključen je u <strong>OpenIDE Pro</strong>.</p>
+<p>Preuzimanje i isprobavanje svih mogućnosti Pro izdanja moguće je <strong>dva mjeseca besplatno i bez registracije</strong>.</p>
+</div>
   <p class="source">Izvor: <a href="https://habr.com/ru/news/1095202/" rel="noopener nofollow">Habr vijesti</a></p>
 </article>
 
