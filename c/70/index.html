@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Besplatna transkripcija zvuka u tekst bez oblaka: zašto mi jedan model nije bio dovoljan – TechPuls</title>
-<meta name="description" content="Autor je isprobao 32 konfiguracije lokalnog prepoznavanja govora i usporedio Whisper, Parakeet, GigaAM i druge modele na vlastitim skupovima podataka. Na temelju mjerenja i ručne provjere zaključuje da jedan model nije dovoljan: GigaAM bolje hvata običan ruski govor, Parakeet bolje prepoznaje termine i anglicizme, pa je složio kaskadu od dva modela koji smanjuje broj pogrešaka i radi potpuno lokalno na Macu.">
+<title>Besplatna transkripcija audia u tekst bez clouda: zašto mi jedan model nije bio dovoljan – TechPuls</title>
+<meta name="description" content="Autor je usporedio 32 konfiguracije ASR-a i složio lokalni cascade iz dvaju modela: GigaAM-a za osnovu teksta i Parakeeta za ispravljanje termina, čime je na vlastitim datasetima smanjio WER s 27,0% na 21,7%. To je važno jer pokazuje da za kvalitetnu lokalnu transkripciju nije dovoljan samo jedan model, nego kombinacija koja bolje čuva i običan razgovor i tehničke termine.">
 <meta property="og:site_name" content="TechPuls">
-<meta property="og:title" content="Besplatna transkripcija zvuka u tekst bez oblaka: zašto mi jedan model nije bio dovoljan – TechPuls">
-<meta property="og:description" content="Autor je isprobao 32 konfiguracije lokalnog prepoznavanja govora i usporedio Whisper, Parakeet, GigaAM i druge modele na vlastitim skupovima podataka. Na temelju mjerenja i ručne provjere zaključuje da jedan model nije dovoljan: GigaAM bolje hvata običan ruski govor, Parakeet bolje prepoznaje termine i anglicizme, pa je složio kaskadu od dva modela koji smanjuje broj pogrešaka i radi potpuno lokalno na Macu.">
+<meta property="og:title" content="Besplatna transkripcija audia u tekst bez clouda: zašto mi jedan model nije bio dovoljan – TechPuls">
+<meta property="og:description" content="Autor je usporedio 32 konfiguracije ASR-a i složio lokalni cascade iz dvaju modela: GigaAM-a za osnovu teksta i Parakeeta za ispravljanje termina, čime je na vlastitim datasetima smanjio WER s 27,0% na 21,7%. To je važno jer pokazuje da za kvalitetnu lokalnu transkripciju nije dovoljan samo jedan model, nego kombinacija koja bolje čuva i običan razgovor i tehničke termine.">
 <meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
 <meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/70/">
 <meta name="twitter:card" content="summary_large_image">
@@ -27,11 +27,271 @@
 
 <article class="post">
   <p class="meta"><a href="../../">← Svi članci</a> · 17. listopada 2026. · Habr</p>
-  <h1>Besplatna transkripcija zvuka u tekst bez oblaka: zašto mi jedan model nije bio dovoljan</h1>
+  <h1>Besplatna transkripcija audia u tekst bez clouda: zašto mi jedan model nije bio dovoljan</h1>
   
-  <p class="lead">Autor je isprobao 32 konfiguracije lokalnog prepoznavanja govora i usporedio Whisper, Parakeet, GigaAM i druge modele na vlastitim skupovima podataka. Na temelju mjerenja i ručne provjere zaključuje da jedan model nije dovoljan: GigaAM bolje hvata običan ruski govor, Parakeet bolje prepoznaje termine i anglicizme, pa je složio kaskadu od dva modela koji smanjuje broj pogrešaka i radi potpuno lokalno na Macu.</p>
+  <p class="lead">Autor je usporedio 32 konfiguracije ASR-a i složio lokalni cascade iz dvaju modela: GigaAM-a za osnovu teksta i Parakeeta za ispravljanje termina, čime je na vlastitim datasetima smanjio WER s 27,0% na 21,7%. To je važno jer pokazuje da za kvalitetnu lokalnu transkripciju nije dovoljan samo jedan model, nego kombinacija koja bolje čuva i običan razgovor i tehničke termine.</p>
   
-  <div class="body"></div>
+  <div class="body"><p>Provodim velik dio radnog dana na sastancima i raspravama. Kad mi se rodilo dijete i kad su krenule neprospavane noći, počeo sam propuštati detalje. Koji je rok bio spomenut? Tko je obećao vratiti se s odgovorom? O čemu smo se na kraju dogovorili?</p>
+<p>Tako je počela priča o <strong>Recorderu</strong>. Isprva sam mislio kupiti gotovo gotovu aplikaciju. Zatim sam počeo uspoređivati Whisper, Parakeet i GigaAM. Na kraju sam testirao <strong>32 konfiguracije prepoznavanja</strong> i složio <strong>cascade od dviju modela</strong>: jedna daje osnovu teksta, druga ispravlja netočnosti. Na mojim datasetima to je popravilo svaku petu grešku (<strong>WER</strong> je pao s <strong>27,0% na 21,7%</strong>).</p>
+<p>Iz tih eksperimenata nastala je besplatna Mac aplikacija koja snima sastanke i lokalno pretvara audio i video u tekst. Ispričat ću kako sam birao modele, što sam mjerio i koja očita rješenja nisu upalila. U članku je i <strong>prompt za agenta</strong> kako biste sve mogli složiti sami.</p>
+<h2>Zašto sam tražio samo lokalnu transkripciju</h2>
+<p>Standardan pristup bio bi: upiši u pretraživač „transkripcija sastanka” i odaberi servis. Izbora ima napretek. Problem je shvatiti po čemu se razlikuju.</p>
+<p>Ja sam odmah ograničio pretragu na <strong>lokalne aplikacije</strong>. Na mojim sastancima raspravlja se o budžetima, kadrovskim odlukama, uvjetima ugovora i internim problemima tvrtki. Ne može se svaki C-level sastanak slati u vanjski servis.</p>
+<p>Znam da mnogi takve snimke daju Claudeu ili ChatGPT-ju. Ali meni nije ugodno slati tamo ni same razgovore ni glasove sudionika. Zato je zahtjev bio jednostavan: audio i transkript moraju ostati samo na mom laptopu.</p>
+<p>Čini se da su sve aplikacije isto složene: uzeli su otvoreni model, dodali sučelje i ponudili pretplatu. Ima i nekoliko dodatnih featurea: snimanje zvuka, razdvajanje sudionika, rad s dugim datotekama. Do toga ću još doći.</p>
+<p>Popis poznatih modela unutar različitih programa doista se ponavlja. Whisper koriste <strong>MacWhisper</strong>, <strong>Buzz</strong> i <strong>SuperWhisper</strong>. <strong>Handy</strong> podržava ne samo Whisper nego i Parakeet.</p>
+<p>Uopće, planirao sam samo kupiti <strong>SuperWhisper Pro</strong>. Sjećam se cijene oko 85 dolara godišnje, ali plaćanje nije prošlo. Možda bih, da je kupnja uspjela, tu i stao. Ovako sam morao razjasniti što je što.</p>
+<p>Krenuo sam od Whispera, to je baza. Dao je razumljiv tekst, ali je vidljivo griješio na mojim ruskim sastancima i radio sporo. Za neke zadatke takva je kvaliteta dovoljna. Meni je trebalo bolje.</p>
+<h2>Što postoji na Habr-u</h2>
+<p>Zadatak lokalnog prepoznavanja ovdje je već više puta obrađivan. Pomogli su mi ovi tekstovi:</p>
+<ul>
+<li><strong>Whisper bez clouda: lokalno prepoznavanje osjetljivih snimki</strong></li>
+<li><strong>Whisper ili GigaAM za ruski ASR u produkciji</strong></li>
+<li><strong>Griješio sam: benchmark 23 ASR-neuralke za rusku IT diktaciju</strong></li>
+<li><strong>Kako sam složio potpuno lokalnu diktaciju: GigaAM, Whisper, Qwen i Apple</strong></li>
+</ul>
+<p>Nakon čitanja Habra i Deep Researcha s Claudeom, Geminijem i ChatGPT-jem, glavni kandidati za mene postali su Whisper u verzijama <strong>large-v2</strong>, <strong>large-v3</strong> i <strong>turbo</strong>, <strong>Parakeet TDT v3</strong> i <strong>GigaAM-v3</strong>. Kasnije sam, radi čistoće eksperimenta, dodao <strong>Breeze-ASR</strong>, <strong>Qwen3-ASR</strong> i druge modele.</p>
+<p>Samo povezivanje modela ispalo je najjednostavniji dio. Prototip koji prima datoteku i vraća tekst rade čak i lokalni agenti. Ali radni prototip ne odgovara na glavno pitanje: <strong>koji model odabrati i zašto?</strong></p>
+<p>Na to sam morao odgovoriti sam, i to je uzelo znatno više vremena nego kod.</p>
+<h2>Isprva sam model birao na oko</h2>
+<p>Puštao sam svoje snimke sastanaka i čitao transkripte. Morao sam na brzinu složiti <strong>diff alat</strong> kako bih lakše uspoređivao tekstove. Prvi dojmovi bili su ovakvi:</p>
+<ul>
+<li><strong>GigaAM</strong> dobro čuje običan ruski govor.</li>
+<li>Sviđa mi se interpunkcija. Ali na terminima, nazivima proizvoda i IT slengu počinju problemi. Tekst izgleda povezano, a smisao razgovora nije uvijek moguće razumjeti.</li>
+<li><strong>Parakeet</strong> je znatno bolje hvatao termine i engleski sleng. Konačni tekst izgledao je lošije, model je višezikovan i nije toliko prilagođen ruskom kao GigaAM, ali se iz njegova teksta gotovo uvijek mogao rekonstruirati smisao.</li>
+<li>Oba su modela radila brzo.</li>
+<li><strong>Whisper</strong> se pokazao vrlo pažljivim na neke detalje. Ponekad je sačuvao ono što su Parakeet i GigaAM preskočili. Ali radio je sporije, a na nekim mjestima je dopisivao rečenice koje na snimci nisu postojale. Raspon kvalitete bio je velik. Rezultat nije djelovao stabilno, ali je ponekad bio impresivan.</li>
+</ul>
+<p>To su bili dojmovi iz analize mojih transkripata (arhiva od <strong>36 sati sastanaka</strong>).</p>
+<p>U tom sam trenutku odabrao Parakeet. Za moje snimke izgledao je kao razuman kompromis između brzine, točnosti i čuvanja termina.</p>
+<p>Neko vrijeme mi je to bilo dovoljno. Zatim sam htio poboljšati kvalitetu i postalo je jasno: dalje bez mjerenja samo biram tekst koji mi se više sviđa. Trebale su mi metrike!</p>
+<h2>Kako sam skupljao podatke za usporedbu ASR-a</h2>
+<p>Najduži dio bio je označavanje. Pokrenuti model je lako. Provjeriti što je točno preskočio, zamijenio ili izmislio, mnogo je sporije.</p>
+<p>Sastavio sam četiri skupa.</p>
+<table>
+<thead>
+<tr>
+<th>Skup</th>
+<th>Što je snimljeno</th>
+<th style="text-align:right">Trajanje</th>
+<th style="text-align:right">Riječi / termini</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Poslovni sastanci</td>
+<td>Odabrao sam 82 isječka radnih sastanaka na kojima se modeli najviše razilaze. I dodao još toliko slučajnih isječaka.</td>
+<td style="text-align:right">Oko 24 minute</td>
+<td style="text-align:right">1 870 / ~5%</td>
+</tr>
+<tr>
+<td>IT-govor</td>
+<td>Posebno pripremljen tekst s gusto raspoređenim IT terminima</td>
+<td style="text-align:right">Oko 24 minute</td>
+<td style="text-align:right">1 679 / ~41%</td>
+</tr>
+<tr>
+<td>Hranilica</td>
+<td>Priča o pametnoj hranilici za mačku, pročitana dvama glasovima. Nešto između prva dva dataseta. Analog teksta iz članka @egorsokolov</td>
+<td style="text-align:right">Oko 24 minute</td>
+<td style="text-align:right">2 391 / ~14%</td>
+</tr>
+<tr>
+<td>Sintetika</td>
+<td>200 fraza s terminima s Habr-a, koje je izgovorio Silero TTS. Provjeriti koliko ova metoda pokazuje stvarnost</td>
+<td style="text-align:right">Oko 26 minuta</td>
+<td style="text-align:right">2 831 / ~14%</td>
+</tr>
+</tbody>
+</table>
+<p>Na kraju sam dobio <strong>oko 1 sat i 38 minuta zvuka s referentnim tekstom i 8,7 tisuća riječi</strong>. Odvojeno sam imao arhivu od 185 snimki ukupnog trajanja 36 sati, na kojoj sam gledao rezultat nakon provjere hipoteza na označenom skupu. On nema puni referentni zapis ni potpunu oznaku za računanje WER-a. U arhivi je oko <strong>230 000 riječi</strong>.</p>
+<p>Skup sastanaka ima važnu posebnost: odabrao sam teška mjesta. U 40 isječaka model nije bio siguran u rezultat, a u još 42 tekst je izgledao čudno za LLM. Nakon toga sam dodao još 82 slučajna isječka radi ravnoteže.</p>
+<p>Sintetiku sam provjeravao zasebno. Htio sam vidjeti može li se testove s potrebnim terminima ozvučiti i koliko je takav pristup prikladan za analizu.</p>
+<h2>Kako sam računao greške i brzinu</h2>
+<p>Glavna metrika je <strong>WER</strong>, koja broji zamjene, propuštanja i višak riječi u odnosu na referencu. Što je vrijednost niža, to je bolje. Prije usporedbe tekst sam pretvarao u mala slova, mijenjao <strong>„ё” u „е”</strong> i uklanjao interpunkciju. „Klod” umjesto Claudea računao se kao greška. Interpunkcija se tom provjerom uopće nije ocjenjivala.</p>
+<p>Zvuk je bio podijeljen u dijelove do 20 sekundi, s rezovima po pauzama. Za Whisper sam koristio <strong>Silero VAD</strong> kako bih odvajao govor od tišine. Mjerenja sam radio na <strong>Intel Core i9</strong> bez ubrzanja na grafičkoj kartici.</p>
+<h2>Whisper, GigaAM i Parakeet na ruskom govoru</h2>
+<p>U glavnoj sam tablici ostavio modele kod kojih se razlika najbolje vidi. Ukupno je u detaljnoj usporedbi bilo <strong>32 konfiguracije</strong>, uključujući različite kvantizacije, promte i načine pokretanja.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align:right">Sastanci, WER</th>
+<th style="text-align:right">IT-govor, WER</th>
+<th style="text-align:right">Hranilica, WER</th>
+<th style="text-align:right">Ukupno, WER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GigaAM-v3 e2e</td>
+<td style="text-align:right">14,8%</td>
+<td style="text-align:right">52,9%</td>
+<td style="text-align:right">16,3%</td>
+<td style="text-align:right">27,0%</td>
+</tr>
+<tr>
+<td>Parakeet TDT 0.6B v3</td>
+<td style="text-align:right">24,6%</td>
+<td style="text-align:right">40,0%</td>
+<td style="text-align:right">13,9%</td>
+<td style="text-align:right">24,6%</td>
+</tr>
+<tr>
+<td>Whisper large-v2</td>
+<td style="text-align:right">30,1%</td>
+<td style="text-align:right">39,0%</td>
+<td style="text-align:right">11,5%</td>
+<td style="text-align:right">24,8%</td>
+</tr>
+<tr>
+<td>Whisper large-v3</td>
+<td style="text-align:right">27,1%</td>
+<td style="text-align:right">59,8%</td>
+<td style="text-align:right">11,6%</td>
+<td style="text-align:right">30,3%</td>
+</tr>
+<tr>
+<td>Whisper large-v3-turbo</td>
+<td style="text-align:right">28,7%</td>
+<td style="text-align:right">66,5%</td>
+<td style="text-align:right">11,1%</td>
+<td style="text-align:right">32,5%</td>
+</tr>
+<tr>
+<td>Whisper medium</td>
+<td style="text-align:right">39,4%</td>
+<td style="text-align:right">43,9%</td>
+<td style="text-align:right">13,5%</td>
+<td style="text-align:right">29,6%</td>
+</tr>
+<tr>
+<td>Breeze-ASR-25</td>
+<td style="text-align:right">35,4%</td>
+<td style="text-align:right">43,4%</td>
+<td style="text-align:right">9,6%</td>
+<td style="text-align:right">26,7%</td>
+</tr>
+<tr>
+<td>Qwen3-ASR 1.7B</td>
+<td style="text-align:right">30,1%</td>
+<td style="text-align:right">48,6%</td>
+<td style="text-align:right">14,7%</td>
+<td style="text-align:right">29,0%</td>
+</tr>
+<tr>
+<td>NVIDIA Canary 1B v2</td>
+<td style="text-align:right">31,9%</td>
+<td style="text-align:right">47,4%</td>
+<td style="text-align:right">16,4%</td>
+<td style="text-align:right">29,9%</td>
+</tr>
+<tr>
+<td>GigaAM Multilingual 600M</td>
+<td style="text-align:right">21,1%</td>
+<td style="text-align:right">58,4%</td>
+<td style="text-align:right">22,2%</td>
+<td style="text-align:right">32,9%</td>
+</tr>
+</tbody>
+</table>
+<p>Ovdje je Whisper pokrenut s izričito zadanim ruskim jezikom bez tekstualnog promta, a Breeze s <strong>promptom</strong>. Manja vrijednost WER-a znači bolji rezultat.</p>
+<p>Glavno zapažanje: <strong>svaki model ima svoje prednosti i nedostatke</strong>.</p>
+<p>Na isječcima sastanaka precizniji je GigaAM. Na IT-govoru su ispred Whisper large-v2 i Parakeet. U prosjeku je Parakeet doista bolji. Na čitanoj priči najbolji rezultat ima Breeze, što se poklapa s testovima @egorsokolov.</p>
+<p>Whisper large-v2 je bolji od v3 samo na govoru s terminima, jer ih točnije prenosi. No na sastancima je v3 malo precizniji. Gust tok engleskih termina v3 čuje iskrivljeno. Vjerojatni razlog je trening: veći dio podataka za v3 označila je sama v2, a miješani rusko-engleski govor zbog toga nije postao bolji.</p>
+<p>Breeze-ASR-25 je Whisper large-v2 dodatno treniran na govoru u kojem je kineski pomiješan s engleskim. Na „Hranilici” ima najbolji rezultat, uglavnom zahvaljujući terminima. Na živim sastancima Breeze griješi i lošiji je od gotovo svih modela.</p>
+<p>Kod komprimiranih modela slika je bila mirnija. Za GigaAM su rezultati Q8 i F32 gotovo isti. Za Parakeet na sastancima je ispalo 24,6% za F32, 25,5% za Q8 i 25,7% za Q6_K. Razlika je mala, ali postoji. To nisam uključio u tablicu, kao ni različite prompte, jer ne utječu mnogo na rezultat.</p>
+<p>U testovima su bili i russian whisper fine-tune modeli, ali svi su na mojim datasetima davali lošije rezultate od originalnih modela, pa su također izbačeni iz tablice.</p>
+<p>Sintetika se po metrikama razlikovala od živog govora: za Parakeet je WER bio 16,8%, a za GigaAM 22,8%. Tamo su bile vidljive pristranosti, pa sam je isključio iz daljnjeg razmatranja i procjena.</p>
+<h2>Zašto jedan WER nije dovoljan</h2>
+<p>Nakon mjerenja postalo je jasnije zašto se tablica i dojmovi iz teksta ponekad nisu poklapali.</p>
+<p>WER ne zna koja je riječ važna za razgovor. Zamjena naziva sustava i zamjena riječi „ma” daju po jednu grešku. Ali za čovjeka su posljedice različite. Bez naziva ili termina ponekad se ne može razumjeti bit razgovora.</p>
+<p>Postoji i obrnuta situacija. Model je napisao „elastiк” umjesto Elastic. Za strogu usporedbu to je greška. Za čitatelja koji poznaje proizvod, smisao može ostati sačuvan.</p>
+<p>Htio sam odvojiti pogreške pisanja od slučajeva u kojima je model doista iskrivio riječ. Zato sam dodao vlastitu heuristiku i nazvao je <strong>WER po zvuku (WERx)</strong>.</p>
+<p>Radi s tekstom, a ne sluša audio. Latinica se prevodi u ćirilični fonetski ključ, uklanjaju se mekani znakovi, razmaci i crtice. Primjerice, Cloud-MD i „klaud md” dobivaju isti ključ. Zatim se uspoređuje sličnost ključeva ili njihovih suglasnika. Pri tome bi dvije obične ruske riječi trebale odgovarati točno: „propadal” i „propadaet” ne postaju jedna riječ.</p>
+<p>To nije univerzalna fonetska metrika niti procjena očuvanja smisla. Potrebna je za pitanje: <strong>koliko je grešaka nastalo zato što je sličan zvuk zapisan drugačije?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align:right">IT-govor: WER</th>
+<th style="text-align:right">IT-govor: WERx</th>
+<th style="text-align:right">Točno zapisani termini</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GigaAM</td>
+<td style="text-align:right">52,9% -&gt; 40,6%</td>
+<td style="text-align:right">40,6%</td>
+<td style="text-align:right">19%</td>
+</tr>
+<tr>
+<td>Parakeet</td>
+<td style="text-align:right">40,0% -&gt; 30,7%</td>
+<td style="text-align:right">30,7%</td>
+<td style="text-align:right">47%</td>
+</tr>
+<tr>
+<td>Whisper large-v2</td>
+<td style="text-align:right">39,0% -&gt; 30,3%</td>
+<td style="text-align:right">30,3%</td>
+<td style="text-align:right">54%</td>
+</tr>
+</tbody>
+</table>
+<p>Za GigaAM se nakon takve normalizacije rezultat znatno poboljšao. Dio grešaka doista je bio povezan s pisanjem. Ali zaostatak za Parakeetom ostao je gotovo deset postotnih bodova. Dakle, sama transliteracija problem nije riješila.</p>
+<p>Na sastancima se rezultat mijenjao mnogo manje: za GigaAM s 14,8% na 14,1%, a za Parakeet s 24,6% na 23,6%. Tamo gustoća termina nije tako velika.</p>
+<p>Tako su se pojavila dva različita zahtjeva. Treba mi model koji dobro prenosi običan ruski razgovor. I treba mi način da sačuvam termine (anglizme / sleng) na kojima taj model griješi.</p>
+<h2>Cascade od dvaju modela: GigaAM i Parakeet</h2>
+<p>Svidio mi se ruski tekst koji daje GigaAM i to kako se Parakeet nosi s terminima (+ bio je 4 puta brži). Poželio sam spojiti njihove rezultate.</p>
+<p>Uzeo sam transkript od GigaAM-a kao osnovu. Parakeet je isti zvuk prepoznavao neovisno. Zatim sam poravnavao ta dva teksta, pronalazio razlike i provjeravao moguće zamjene.</p>
+<p>Iz Parakeeta sam uzimao varijantu ako je sadržavala latinicu i bila dovoljno slična po zvuku odgovarajućem dijelu GigaAM-a. Ostatak teksta ostajao je neizmijenjen.</p>
+<p>Primjerice, tako se moglo zamijeniti „apkid” s AppKitom, „Sweeft” sa Swiftom, „Promius” s Prometheusom. Ali pojavljivale su se i greške: „dif” je mogao postati div, a „klot” u Cloud umjesto Claudea. Slično zvučenje još ne znači ispravnu zamjenu.</p>
+<p>Glavni parametar postao je prag sličnosti. Pri niskom pragu cascade je spremnije prihvaćao ispravke, a pri visokom je propuštao više kandidata.</p>
+<table>
+<thead>
+<tr>
+<th>Pravilo zamjene</th>
+<th style="text-align:right">IT-govor, WER</th>
+<th style="text-align:right">Sastanci, WER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Samo GigaAM</td>
+<td style="text-align:right">52,9%</td>
+<td style="text-align:right">14,8%</td>
+</tr>
+<tr>
+<td>Latinica, sličnost od 0,3</td>
+<td style="text-align:right">41,0%</td>
+<td style="text-align:right">14,5%</td>
+</tr>
+<tr>
+<td>Latinica, sličnost od 0,4</td>
+<td style="text-align:right">41,9%</td>
+<td style="text-align:right">14,5%</td>
+</tr>
+<tr>
+<td>Latinica, sličnost od 0,5</td>
+<td style="text-align:right">43,4%</td>
+<td style="text-align:right">14,5%</td>
+</tr>
+<tr>
+<td>Latinica, sličnost od 0,7</td>
+<td style="text-align:right">49,1%</td>
+<td style="text-align:right">14,6%</td>
+</tr>
+<tr>
+<td>Sličnost od 0,5, bez zahtjeva za latinicom</td>
+<td style="text-align:right">43,6%</td>
+<td style="text-align:right">17,4%</td>
+</tr>
+</tbody>
+</table>
+<p>Bez ograničenja na latinicu rezultat na sastancima se pogoršavao. Cascade je od Parakeeta uzimao ne samo korisne termine</p>
+</div>
   <p class="source">Izvor: <a href="https://habr.com/ru/articles/1095512/" rel="noopener nofollow">Habr</a></p>
 </article>
 
