@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moj agent dobio visoku ocjenu. Provjeravam što je učinio – TechPuls</title>
+<meta name="description" content="U ovom članku istražujem kako provjeriti učinkovitost dijalognog agenta koji je dobio visoku ocjenu na benchmarku. Kroz analizu različitih testova i mjerenja, otkrivam nedostatke i greške koje su utjecale na rezultate agenta.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Moj agent dobio visoku ocjenu. Provjeravam što je učinio – TechPuls">
+<meta property="og:description" content="U ovom članku istražujem kako provjeriti učinkovitost dijalognog agenta koji je dobio visoku ocjenu na benchmarku. Kroz analizu različitih testova i mjerenja, otkrivam nedostatke i greške koje su utjecale na rezultate agenta.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/img/2.jpg">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/2/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/c/2/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="https://www.youtube.com/@TechPuls" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post">
+  <p class="meta"><a href="../../">← Svi članci</a> · 18. listopada 2026. · Habr</p>
+  <h1>Moj agent dobio visoku ocjenu. Provjeravam što je učinio</h1>
+  <img class="hero" src="../../assets/img/2.jpg" alt="" width="1200" height="675">
+  <p class="lead">U ovom članku istražujem kako provjeriti učinkovitost dijalognog agenta koji je dobio visoku ocjenu na benchmarku. Kroz analizu različitih testova i mjerenja, otkrivam nedostatke i greške koje su utjecale na rezultate agenta.</p>
+  
+  <div class="body"><h1>Moj agent dobio visoku ocjenu. Provjeravam što je učinio</h1>
+<p>Kako provjeriti je li dijalogni agent izvršio zadatak ako je benchmark postavio visoku ocjenu? U prvom testu moj agent dobio je nagradu 1 za svih pet zadataka. Nakon toga, zamjena bez ikakvog poziva alata osvojila je 34% na punom skupu.</p>
+<p>Razvijam vlastiti eksperimentalni sustav i nazivam ga ELM. U njegovoj dijalognoj varijanti, kod predlaže radnje, neuronska mreža bira među njima, a kod izvršava poziv i prikuplja odgovor. U provjerenom načinu rada, neuronska mreža ne piše tekst odgovora.</p>
+<h2>Razumijevanje visoke nagrade</h2>
+<p>Kako bih shvatio što stoji iza visoke nagrade, počeo sam brojati radnje odvojeno i provjerio svoj ciklus izvršavanja kontrolnom modelom. Ovaj članak razlaže mjerenje i greške agenta.</p>
+<h2>Brojanje radnji uz konačnu nagradu</h2>
+<p>U ELM-u kod predlaže radnje, neuronska mreža kao sudac bira među njima, kod prikuplja odgovor i izvršava poziv. Sudac vraća vjerojatnosti, tekst ne piše. Ciklus pohranjuje stanje i rezultate alata. Provjeravao sam ga na airline iz tau2-bench, commit b7ea9074c1cb: korisnik — druga mreža, alati rade s bazom rezervacija.</p>
+<p><strong>pass^1</strong> — udio zadataka s nagradom 1 za jedno pokretanje svakog. Prvo testiranje dalo je pass^1 = 1,000: svih pet zadataka dobilo je takvu nagradu. No, podudarnih s etalon radnji bilo je 2 od 13. „Pet od pet” trebalo je ponovno pročitati.</p>
+<p>Nagrada ovdje provjerava konačno stanje baze i komunikacijske uvjete, put do rezultata nije uključen. U 24 od 50 zadataka etalon ne mijenja bazu: početno stanje podudara se s ciljnim. <strong>communicate_info</strong> ispunjeno je za šest zadataka. Sva pet zadataka mog prvog testiranja bila su bez promjene baze.</p>
+<p>Napisao sam <strong>noop_agent</strong>: pozdrav, pojašnjavajuće pitanje, zatim ponavljanje do zaustavljanja simulatora ili limita koraka. Poziva nema. Na 50 zadataka dobio sam pass^1 = 0,340 uz 0 od 142 očekivanih radnji. Na 30 probnih zadataka — 0,400.</p>
+<h2>Nula poziva. 34% nagrade. Što smo točno izmjerili?</h2>
+<p>Od 24 zadatka bez bilježenja, zamjena je prošla 17. Šest je prekinuto zbog limita koraka, jedan nije prošao komunikacijsku provjeru. Ovih 34% ovise o skupu i završetku dijaloga. Oni ne dokazuju da je benchmark pokvaren: referentni odgovor ili ispravan odbijanje mogu legitiman ne mijenjati bazu. Za procjenu ponašanja potrebne su analize zadataka, tragovi dijaloga i pridržavanje pravila.</p>
+<p>U blizini nagrade počeo sam brojati podudarnosti radnji prema etalonu i tragu: ime alata i argumenti. To je dijagnostička provjera, a ne univerzalna mjera uspjeha: pretpostavimo drugi ispravan put. Cilj i pridržavanje pravila treba provjeriti odvojeno. U <strong>tasks.json</strong> očekuje se 142 radnje na punom skupu, 84 na dev, 58 na odloženim zadacima. Ugrađeni <strong>action_checks</strong> ne zamjenjuju ovo brojanje: nazivnik ovisi o tijeku simulacije, nakon neuspjeha provjere baze, polje može biti prazno.</p>
+<h2>Usporedba ELM-a sa zamjenom na jednom skupu</h2>
+<p>Čisti ELM-dev na 30 zadataka dao je pass^1 = 0,333 naspram 0,400 zamjene. Radnji — 23 od 84 naspram nule. To ne potvrđuje prednost ELM-a. Napravio je 460 poziva, od kojih su 411 ponavljanja; jedan se susreo 100 puta. Skupilo se 713 koraka, čija nagrada ne pokazuje troškove.</p>
+<p>Proba na 50 zadataka operacijski sustav ubio je nakon 41. Vrh memorije stabla procesa — 27 555 MB, kod završenih zadataka 24 od 95 radnji i pass^1 = 0,268. Prekinuta ćelija ne može se izravno usporediti s punom zamjenom. Uzrok rasta memorije bio je ciklus bez ograničenja na ponavljanje i ispis; memorija udaljenog suca ovdje nije izmjerena.</p>
+<h2>Postavljam jedan model u dva ciklusa</h2>
+<p>Kako bih odvojio greške suca od grešaka ciklusa, provjerio sam jedan <strong>deepseek-chat</strong> na tri identična zadatka u referentnom agentu benchmarka i u mom ciklusu. Simulator korisnika je isti; mijenja se ciklus izvršavanja ili harness.</p>
+<p>U referenci, model je izvršio 5 od 5 radnji u 22 koraka, vrh RSS — 407,0 MB. U prvom testu mog harnessa — 0 od 5, 31 korak i 11 592,2 MB. Debugging se premjestio na ugovor između izbora, stanja i izvršavanja. Tri zadatka ne daju pouzdanu procjenu općeg učinka, ali prethodni brojevi nisu dopuštali istaknuti kvalitetu suca.</p>
+<p>Pristup potpunim probama: 4 od 5 radnji na ovoj trojici, vrh ispod 1 GB, bez gubitaka zadataka. Do ispunjenja svih uvjeta široke probe su zaustavljene.</p>
+<h2>Ćelija i skup</h2>
+<table>
+<thead>
+<tr>
+<th>Ćelija</th>
+<th>pass^1</th>
+<th>Radnje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zamjena, svih 50 zadataka</td>
+<td>0,340</td>
+<td>0/142</td>
+</tr>
+<tr>
+<td>Zamjena, dev 30 zadataka</td>
+<td>0,400</td>
+<td>0/84</td>
+</tr>
+<tr>
+<td>ELM, čisti dev 30 zadataka</td>
+<td>0,333</td>
+<td>23/84</td>
+</tr>
+<tr>
+<td>DeepSeek, referenca, 3 zadatka</td>
+<td>1,000</td>
+<td>5/5</td>
+</tr>
+<tr>
+<td>DeepSeek, moj ciklus, najbolji test, 3 zadatka</td>
+<td>1,000</td>
+<td>3/5</td>
+</tr>
+<tr>
+<td>DeepSeek, moj ciklus, posljednji test, 3 zadatka</td>
+<td>0,333</td>
+<td>3/5</td>
+</tr>
+</tbody>
+</table>
+<p>Kontrolna trojka pokazuje: čak i pass^1 = 1,000 susjedstvo s nepotpunim izvršenjem radnji.</p>
+<h2>Razmatram ponavljanja i izgubljene zadatke</h2>
+<p>Za deset testova pronašao sam nekoliko grešaka ugovora. Ponovno <strong>cancel_reservation</strong> dodavalo je pokušaj u objekt rezervacije, alat je vraćao sve duži ishod. Ograničenja na ponavljanje, volumen činjenica iz odgovora i broj vrijednosti na ključu stanja zaustavili su rast memorije.</p>
+<p>Dva zadatka od tri završila su s oznakom <strong>INFRASTRUCTURE_ERROR</strong> — „greška infrastrukture”. Uzrok je bio u mom kodu za analizu odgovora: <strong>DeepSeek</strong> je vratio broj s objašnjenjem, kod ga nije prepoznao, i poziv <strong>nogen.ask</strong> završio je iznimkom. Sada omotač ispisuje traceback, epizoda bez nagrade ostaje promašaj u nazivniku. Gubici su uspjeli svedeni na nulu.</p>
+<p>Usporedba replike samo s prethodnom propuštala je A-B-A-B. Agent je napravio 99 koraka bez alata, brojač je vidio jedno ponavljanje. Proširenje prozora samo po sebi dijalog nije izliječilo.</p>
+<p>Najbolji test, v9, pojavio se nakon premještanja provjere pravila u trenutak upisa u bazu. Ispalo je 3 od 5 radnji, 136 koraka i 409,8 MB; svi dijalozi su završili. U posljednjoj, v10, dodao sam uvjet „prije upisa pročitaj ciljnu stavku”. Ono se nije izvršilo, a ciklus je odlazio u prijenos ljudima: 169 od 175 poziva bili su <strong>transfer_to_human_agents</strong> s istim tekstom. Ponovno je ispalo 3 od 5 radnji, već 206 koraka i 337,7 MB.</p>
+<h2>Deset testova ciklusa izvršavanja: podudarne radnje i lokalni vrh memorije</h2>
+<p>Deset testova mog harnessa na tri zadatka s jednim <strong>DeepSeek</strong>: podudarne radnje i lokalni vrh RSS. v2 i v4 uklonjeni su s nefixiranim ispravkama i ostavljeni samo za kronologiju; dopuštenje 4 od 5 radnji nije prošlo.</p>
+<p>Memoriju i gubitak zadataka ispravio sam. Dopuštenje za radnje nije ispunjeno: potrebno je 4 od 5, dobiveno 3. Duljina dijaloga također je ostala problem: 136–206 koraka naspram 22 u referenci. U oba posljednja testa otkazana je pogrešna rezervacija: kandidat je biran iz općeg bazena, a ne iz pročitane evidencije, podudarne s opisom korisnika.</p>
+<h2>Provjeravam cijenu i čistoću testa</h2>
+<p>Najbolji test mog ciklusa s <strong>DeepSeek</strong> koštao je procijenjenih $0,0240 po zadatku, 104,7 pristupa runtimeu. Metapodaci su pokazivali $0,0274 i 207: jedan HTTP zahtjev računao se dvaput, po sučelju suca i pružatelju. Potreban je izračun po jednoj stopi. Povijesne stope <strong>DeepSeek</strong> — $0,27 za milijun ulaznih i $1,10 izlaznih tokena; trenutna cijena ovdje ne slijedi. Keširanje nije izmjereno. Cijena <strong>ELM-dev</strong> nije snimljena: brojač je pojavio kasnije.</p>
+<p>RSS prikazuje stablo procesa na mojoj mašini. Sudac radi udaljeno, a njegovi resursi nisu poznati. Tokeni referentnog harnessa moji brojači ne vide. Stoga memorija uspoređuje lokalne harnessa, a puna cijena dva sustava ovdje nije utvrđena.</p>
+<p>Nema čistog neovisnog testa. Odvojene provjere 20 odloženih zadataka nije bilo. Zadatak 2 ušao je u trojku za debug; prekinuta proba uključivala je 17 odloženih zadataka, puna proba zamjene obuhvatila je svih 20. Budući test na njima više se ne može smatrati netaknutim.</p>
+<h2>Ispravljam ciklus do sljedeće usporedbe</h2>
+<p>Sljedeći korak: birati rezervaciju prema provjerenim detaljima, fiksirati jednokratno čitanje i skratiti dijalog. Nakon ispunjenja dopuštenja moguće je usporediti rješavače. Ulogu suca na tau2 još nisam izmjerio.</p>
+<p>Za svog agenta uzimam zamjenu, broj radnji uz nagradu i model u dva harnessa. Oni su pomogli pronaći greške ciklusa prije zamjene suca.</p>
+<h2>Kod i metapodaci</h2>
+<p>https://github.com/ADanMan/elm-research. Repozitorij je trenutno privatni, planiram ga otvoriti nakon objave članaka. Preprint na arXiv nije objavljen: potrebno je odobrenje u cs.CL. Ako možete pomoći, javite mi u privatne poruke na Habu.</p>
+</div>
+  <p class="source">Izvor: <a href="https://habr.com/ru/articles/1091900/" rel="noopener nofollow">Habr</a>.
+  Članak je preveden i sažet uz pomoć umjetne inteligencije te pregledan od urednika.</p>
+</article>
+
+<footer>
+  <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+
+</body>
+</html>
