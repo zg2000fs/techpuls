@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anthropic mi je banirala Claude, a u izvozu je vratila samo broj telefona. Sad mi Grok odgovara u perici – TechPuls</title>
+<meta name="description" content="Anthropic je ugasila korisnikov Claude račun zbog navodnog kršenja Usage Policyja, a u izvozu podataka vratila mu je praktički samo ime, e-mail i broj telefona. Zato je ostatak workflowa preselio na vlastitu infrastrukturu, gdje sada koristi open-source stack i modele koje može mijenjati bez ponovnog „seljenja” cijelog sustava.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Anthropic mi je banirala Claude, a u izvozu je vratila samo broj telefona. Sad mi Grok odgovara u perici – TechPuls">
+<meta property="og:description" content="Anthropic je ugasila korisnikov Claude račun zbog navodnog kršenja Usage Policyja, a u izvozu podataka vratila mu je praktički samo ime, e-mail i broj telefona. Zato je ostatak workflowa preselio na vlastitu infrastrukturu, gdje sada koristi open-source stack i modele koje može mijenjati bez ponovnog „seljenja” cijelog sustava.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/65/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/c/65/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="https://www.youtube.com/@TechPuls" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post">
+  <p class="meta"><a href="../../">← Svi članci</a> · 17. listopada 2026. · Habr</p>
+  <h1>Anthropic mi je banirala Claude, a u izvozu je vratila samo broj telefona. Sad mi Grok odgovara u perici</h1>
+  
+  <p class="lead">Anthropic je ugasila korisnikov Claude račun zbog navodnog kršenja Usage Policyja, a u izvozu podataka vratila mu je praktički samo ime, e-mail i broj telefona. Zato je ostatak workflowa preselio na vlastitu infrastrukturu, gdje sada koristi open-source stack i modele koje može mijenjati bez ponovnog „seljenja” cijelog sustava.</p>
+  
+  <div class="body"><h2>Anthropic mi je banirala Claude, a u izvozu je vratila samo broj telefona. Sad mi Grok odgovara u perici</h2>
+<p>Prije par tjedana ušao sam u Claude i dočekao me crveni banner: račun je deaktiviran zbog kršenja Usage Policyja. Koja točno stavka i u kojem chatu, nije pisalo. Pomislio sam da je posrijedi nesporazum i poslao sam žalbu, mirno i konkretno.</p>
+<p>Odgovor je stigao brzo i stao u jednu rečenicu: račun nećemo vratiti, prekršili ste Usage Policy. Što sam točno prekršio, i dalje je ostalo tajna. Malo kasnije na isti mail sletjela je i automatska poruka: moja je žalba u obradi. Tako su mi sad u inboxu jedno do drugoga završili odbijenica i obećanje da će „istražiti”. A odbijenica je stigla prva.</p>
+<p>Dobro, pomislio sam, barem ću izvući svoje chatove. Export za banane račune radi, piše u pomoći. Tamo je sitnim slovima dodano i da sadržaj arhive mogu ograničiti. Riječ „ograničiti” tamo shvaćaju prilično široko. Dobio sam jednu datoteku:</p>
+<pre><code class="language-json">[{“uuid”: “2078d5e2-…”, “full_name”: “Eldar”, “email_address”: “…”, “verified_phone_number”: “+998…”}]
+</code></pre>
+<p>To je cijela arhiva. Niti jedan chat, niti jedan projekt, niti jedna linija koda. Ali su mi uredno vratili ime, e-mail i telefon. Valjda za slučaj da zaboravim kako se zovem i kamo im stižu odbijenice. Od svega što sam im napisao, najvrjednijim su očito smatrali broj koji sam unio pri registraciji.</p>
+<h2>Što sam uspio spasiti</h2>
+<p>Spasila me paranoja. 12. kolovoza sam, bez nekog posebnog razloga, napravio backup chatova, pa sam izgubio samo ono što se nakupilo nakon toga — otprilike mjesec i pol. Prvo sam se nadao da desktop aplikacija drži kopiju kod sebe, pa sam prekopao AppData, IndexedDB i Local Storage. Skupilo se manje od megabajta, i to su bile samo postavke. Chatovi su živjeli samo na njihovu serveru.</p>
+<p>Ali u WSL-u sam našao snapshot <code>~/.claude</code>, ostao od Claude Code 2.1.238, a u njemu transkripte CLI sesija. Tamo je bilo 35 sesija, gdje je stajao moj zadnji rad s modelom. Još 1,2 GB zauzimali su subagenti, do njih mi se nije dalo petljati. I iskreno, nisu mi baš ni trebali.</p>
+<h2>Claude Code u perici</h2>
+<p>Claude Code u početku nisam ni napustio, previše sam se navikao na njega. U Anthropic više nije mogao ići, pa je išao na moj proxy. U klijentu postoji Developer mode i može se spojiti vlastiti LiteLLM proxy. Tada sam otkrio da klijent provjerava ime modela i sve što ne nalikuje na Claude odmah odbacuje:</p>
+<pre><code class="language-text">Doesn’t look like an Anthropic model: expected a gateway model route referencing an Anthropic model (e.g. claude-sonnet-4-5, anthropic/claude-*)
+</code></pre>
+<p>Morao sam u LiteLLM podići rutu <code>anthropic/claude-local</code>, koja je iznutra preusmjeravala zahtjeve na <code>grok-4.7</code>. Claude Code je tu rutu prihvatio: za klijenta je ime modela bilo dovoljno nalik Anthropic modelu. Koji model stoji iza rute, više ga nije pretjerano zanimalo.</p>
+<p>Tako je Grok završio u Anthropicu: bez razgovora za posao, s krivotvorenom propusnicom.</p>
+<p>Zatim sam zapinjao na kontekst. Model prihvaća 500k, a aplikacija uporno pokazuje 200k. Patchao sam konstante ravno u <code>claude.exe</code>, dvaput restartao, i brojač se nije ni pomaknuo: za sva imena tipa <code>claude-*</code> plafon je ugrađen u kod.</p>
+<p>Radila je varijabla <code>CLAUDE_CODE_MAX_CONTEXT_TOKENS=500000</code> u <code>settings.json</code>, ali samo za imena koja ne počinju s <code>claude-*</code>.</p>
+<p>Periku je trebalo krojiti po mjeri. Ime mora biti dovoljno nalik Claudeu da ga klijent pusti, ali ne toliko da ga prepozna kao svog i skrati mu kontekst.</p>
+<p>Ostalo je još natjerati pronađene sesije da se otvaraju. U početku su se prikazivale prazne, iako je u <code>jsonl</code> datotekama bilo stotine replika. Ispalo je da je putanja do filea zapisana kao <code>\mnt\c…</code>: hibrid Linuxa i Windowsa koji Windows ne može otvoriti. Popravio sam putanje i prebacio sesije na Ubuntu preko <code>wslConfig</code>. Nakon toga je aplikacija počela tražiti razgovore unutar WSL-a, nije ih nalazila i stvarala je prazne kopije s novim <code>id</code>-ovima.</p>
+<p>Na kraju sam transkripte rasporedio u <code>~/.claude/projects</code> izravno u Ubuntu, a ondje gdje su <code>id</code>-ovi već uspjeli promijeniti svoje vrijednosti, podmetnuo sam original pod novo ime. Usput je WSL dodao i svoje.</p>
+<h2>Preseljenje na vlastiti teren</h2>
+<p>Otvaranje novog accounta i čekanje sljedećeg bannera mi se nije radilo, pa sam nakon igranja s Claude Codeom i Grokom koji se maskirao u Opus odlučio preseliti na vlastiti homelab.</p>
+<p>Open WebUI vrti se na serveru u kućnoj mreži, pokraj Ollame, koju koristim za prepoznavanje mačaka i ježeva preko Frigate servera. Usput, ako vas zanima, o tome mogu napisati zasebno.</p>
+<p>Povijest je u Postgresu, a attachmenti su na disku. Isključiti mi račun tamo mogu samo izbijeni osigurači, ali i za to imam UPS i generator od 16 kW.</p>
+<p>Backup od 12. kolovoza morao sam vratiti ručno, jer standardni import ne prima datoteke izvezene iz backupa. Dobio sam mapu <code>Claude migrated</code> s podmapama <code>chats</code>, <code>projects</code> i <code>code</code>, a tamo su završile i sesije iz WSL snapshota.</p>
+<p>Sve što je bilo na disku preselilo se. Rupa nakon 12. kolovoza ostala je rupa.</p>
+<p>Kad sam već krenuo, prebacio sam i ChatGPT: 283 chata i 4783 poruke, s originalnim datumima. S projektima OpenAI-a postupio je prilično elegantno. U exportu su bili samo interni id-evi bez naziva, pa sam nazive iščitavao iz sistemskih promptova chatova.</p>
+<p>ChatGPT ni memory ne stavlja u export. Jednostavno sam ga zamolio da izveze sve što zna o meni i usporedio to s onim što već imam u Open WebUI-ju. Gotovo sve se poklapalo, a dio sam prije i sam ručno ispravljao.</p>
+<p>Najsmješnije je bilo oko servera mog pet projekta u Yandex Cloudu: po ChatGPT-ju je koštao 3000 dolara mjesečno, a u stvarnosti oko sedam tisuća rubalja. Tu kilometarsku procjenu nisam prebacio u memory.</p>
+<h2>Dotjerivanje postavki OWUI-ja</h2>
+<p>Dalje je krenulo ono zbog čega se cijeli preselidbeni projekt i isplatio. Providera ima više, a ispred svakog stoji vlastiti Headroom: van odlazi sažeti prompt, a u bazi ostaje puni chat. Htio sam ispred svega staviti LiteLLM, jednu ulaznu točku i alat koji će pročitati izrezanu sredinu. Nije uspjelo. Open WebUI tvrdoglavo šalje <code>stream:true</code>, a Headroom na streamu ne umeće alat. U verziji 0.40.0 to nisu popravili, <code>Issue 3815</code> je i dalje otvoren. Četiri proxyja ostala su četiri proxyja.</p>
+<p>Ipak sam htio da se nedostajući dio može pročitati, pa sam alat zakačio sam, kao zaseban MCP uz svaki proxy. Model vidi marker <code>&lt;&lt;ccr:hash&gt;&gt;</code> i sam poziva <code>headroom_retrieve</code>.</p>
+<p>Odmah je iskočio bug: <code>retrieve</code> je vraćao isti marker koji je upravo razotkrio.</p>
+<p>Exclude u postavkama Headroom proxyja hvatao je golo ime <code>headroom_retrieve</code>, a Open WebUI ga zove s prefiksom, <code>hr-grok_headroom_retrieve</code>.</p>
+<p>Drugim riječima, Headroom je komprimirao odgovor vlastitog alata <code>retrieve</code>, iako to nije smio.</p>
+<p>U proxy sam dodao <code>HEADROOM_EXCLUDE_TOOLS=*headroom_retrieve</code>, a u sistemski prompt modela upisao sam prefiksirano ime: u MCP specki alat je gol, pa ga model inače ne prepoznaje.</p>
+<p>Testirao sam na ticketu iz Planea. Marker je stigao, po hashu se vratio original, a proxy svoj odgovor nije ponovno komprimirao. Chat u bazi je ostao cjelovit, tokeni se režu usput, a izrezani dio više ne visi kao mrtav teret.</p>
+<p>Usput, vlastito spremište ne znači da model radi lokalno. Ako zahtjev ode vanjskom provideru, on dobije kontekst koji mu je poslan. Moja priča i attachmenti pritom ostaju kod mene, a providera i model mogu mijenjati neovisno o sučelju.</p>
+<p>Iznad su priključeni i moji alati: Plane, pretraživanje po bazama znanja i memory koji neće nestati zajedno s accountom. S mobitela se sve to otvara u običnom browseru, na adresi unutar kućne mreže.</p>
+<h2>Hermes</h2>
+<p>Nakon nekog vremena uhvatio sam se kako i dalje držim zasebnu Claude Code aplikaciju, čisto iz nostalgije. Ona ide na moj proxy, pravi se da razgovara s Anthropicom i traži da model nosi tuđe ime. Tada sam instalirao agenta Hermes i priključio ga izravno u Open WebUI. Sad zadatak agentu predajem iz istog chata u kojem mi je sva povijest, bez zasebne aplikacije i zasebnog logina. Claude Code mi nakon toga više nije trebao; žalio sam za njim otprilike pet minuta.</p>
+<p>Cijeli je stack sada open source: Open WebUI, Postgres, Headroom i Hermes. Tuđi je samo model, a i njega mogu promijeniti bez novog seljenja.</p>
+<h2>Ako sve složim u jednu sliku</h2>
+<p>Sljedeći cilj je jedinstvena točka rutiranja između providera, s prebacivanjem pri greškama i kad se iscrpe dostupni limiti. Želim da promjena modela više ne izgleda kao novo preseljenje. Za sada je to još u planu.</p>
+<h2>Zašto su me banali</h2>
+<p>Imam samo sumnje. Claude sam koristio isključivo kroz Proxifier i preko proxyja koje sam sam administrirao. Mislim da je ban stigao nakon kupnje Max pretplate. Trebala mi je da prepišem front svog petog projekta, i koristio sam je prilično intenzivno. Anthropic vjerojatno nije bio oduševljen time što je netko kupio Max i stvarno ga koristi. Ali to su samo pretpostavke. U exportu nema razloga, tamo je samo moj telefon. Ako požele objasniti, broj već imaju.</p>
+<p>Još jednom sam se uvjerio da je vendor lock-in zlo. Što je više vlastitih podataka i open-source komponenti oko tebe, to si manje ovisan o korporaciji koja ti može ugasiti račun i ostaviti ti za uspomenu samo broj telefona.</p>
+<p>Žalba ništa nije vratila. Vrativši backup koji sam napravio iz paranoje, vratio sam i bazu koja stoji kod kuće. Tuđe je u mom stacku sada uglavnom samo model. Njega mogu zamijeniti, bez ponovnog seljenja cijelog svog života.</p>
+</div>
+  <p class="source">Izvor: <a href="https://habr.com/ru/articles/1095624/" rel="noopener nofollow">Habr</a></p>
+</article>
+
+<footer>
+  <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+
+</body>
+</html>
