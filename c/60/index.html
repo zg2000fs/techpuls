@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claude je za pola sata razriješio zagonetku NSA-e staru više od 25 godina. Odgovor je kriptografima bio pred nosom – TechPuls</title>
+<meta name="description" content="Anthropic je otkrio da je Claude za manje od pola sata pronašao podrijetlo seedova koji stoje iza NIST-ovih eliptičnih krivulja, a kriptograf Filippo Valsorda potvrdio je da je rješenje točno. Ispostavilo se da su brojevi zapravo potekli iz vremena sustava, što je važno jer pokazuje kako se i stari sigurnosni standardi mogu provjeriti, ali i zašto se takav pristup ne smije koristiti za tajne vrijednosti.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Claude je za pola sata razriješio zagonetku NSA-e staru više od 25 godina. Odgovor je kriptografima bio pred nosom – TechPuls">
+<meta property="og:description" content="Anthropic je otkrio da je Claude za manje od pola sata pronašao podrijetlo seedova koji stoje iza NIST-ovih eliptičnih krivulja, a kriptograf Filippo Valsorda potvrdio je da je rješenje točno. Ispostavilo se da su brojevi zapravo potekli iz vremena sustava, što je važno jer pokazuje kako se i stari sigurnosni standardi mogu provjeriti, ali i zašto se takav pristup ne smije koristiti za tajne vrijednosti.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/60/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/c/60/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="https://www.youtube.com/@TechPuls" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post">
+  <p class="meta"><a href="../../">← Svi članci</a> · 17. listopada 2026. · Habr vijesti</p>
+  <h1>Claude je za pola sata razriješio zagonetku NSA-e staru više od 25 godina. Odgovor je kriptografima bio pred nosom</h1>
+  
+  <p class="lead">Anthropic je otkrio da je Claude za manje od pola sata pronašao podrijetlo seedova koji stoje iza NIST-ovih eliptičnih krivulja, a kriptograf Filippo Valsorda potvrdio je da je rješenje točno. Ispostavilo se da su brojevi zapravo potekli iz vremena sustava, što je važno jer pokazuje kako se i stari sigurnosni standardi mogu provjeriti, ali i zašto se takav pristup ne smije koristiti za tajne vrijednosti.</p>
+  
+  <div class="body"><p>Četvrt stoljeća oko jednog od glavnih standarda moderne kriptografije vladala je gotovo detektivska intriga. Godine 2000. američki institut za standarde NIST odobrio je skup eliptičnih krivulja od P-192 do P-521 — danas se na P-256 oslanjaju potpisi certifikata web-mjesta, login tokeni i zaštićeni čipovi telefona. Parametri tih krivulja izvedeni su iz početnih vrijednosti (seedova) koje je Agencija za nacionalnu sigurnost SAD-a predala u standard bez ikakvog objašnjenja. Dana 16. listopada 2026. tim Anthropic objavio je da je njihov interni istraživački model Claude za manje od pola sata našao podrijetlo tih brojeva, a kriptograf Filippo Valsorda, koji je za razrješenje ponudio nagradu, potvrdio je da je rješenje točno.</p>
+<h2>Kriptografski detektiv: stari računalni sustav i arhiva brojeva</h2>
+<p><em>Illustracija je generirana uz pomoć umjetne inteligencije.</em></p>
+<p>Da bi dokazali poštenost algoritma, kriptografi obično koriste princip „ništa u rukavu”: uzmu broj iz transparentnog izvora i provuku ga kroz hash-funkciju, pokazujući da parametri nisu ručno namješteni za skrivenu ranjivost. U slučaju NIST-ovih krivulja transparentnosti nije bilo, a nakon otkrića Edwarda Snowdena i priče o generatoru Dual_EC_DRBG, za koji se posumnjalo da ima stražnja vrata od NSA-e, a zatim je
+izbačen iz preporuka NIST-a
+, sumnje su postale vrlo ozbiljne.</p>
+<p>Legenda je govorila da su početne vrijednosti zapravo hash duhovite engleske fraze koju je autor izračuna, Jerry Solinas iz NSA-e, jednostavno zaboravio. Solinas je 2015. godine spominjao varijantu poput „Give Bob and Jerry a raise” („Podignite Bobu i Jerryju plaću”; Bob je bio njegov kolega Bob Righter, koji je pisao kod) i priznao da stare arhive više nije bilo moguće pronaći. Godine 2018. istraživač Steve Weis pokušao je doći do dokumenata o početnim vrijednostima putem službenih zahtjeva: NIST je odgovorio da dokumentaciju nema, a od NSA-e Weis dokumente nikada nije dobio. Godine 2023. Solinas je umro, a Valsorda je objavio novčanu nagradu za utvrđivanje podrijetla početnih vrijednosti, no tri godine potrage nisu dale nikakav rezultat.</p>
+<p>Nekoliko zaposlenika Anthropic-a prije toga je također bezuspješno pokušavalo pogoditi željenu frazu. Sve se promijenilo u listopadu 2026. kada je jedan od istraživača zadatak povjerio internom modelu, pritom mu namjerno ne otkrivši legendu o tekstu. Bez tog traga, model je pretpostavio da je softver iz devedesetih jednostavno koristio standardni generator pseudonasumičnih brojeva iz C biblioteka i napisao skener za 34 kombinacije generatora i načina na koje se njihov izlaz reže.</p>
+<p>Trag je svih tih godina ležao u samim objavljenim brojevima. Kod četiri od deset NIST-ovih početnih vrijednosti najviši bit svakog od pet 32-bitnih riječi iznosi nula. Sve četiri odnose se na binarne krivulje. To se vidi golim okom ako znate gdje gledati; prema računu Anthropic-a, vjerojatnost da se takav obrazac slučajno pojavi barem kod četiri od deset početnih vrijednosti iznosi otprilike 1 prema 5810. Upravo je te početne vrijednosti Valsorda 2023. izuzeo iz nagrade, iako je savjetovao da se i one prouče. Nulti najviši bit tipičan je potpis standardnog generatora lrand48 iz obitelji POSIX-ovog drand48, koji prema van izbacuje samo viših 31 bit svog 48-bitnog unutarnjeg stanja.</p>
+<p>S ostalim početnim vrijednostima bilo je teže: program je uzimao samo dio podataka koje je generator isporučivao, pa se poznati obrazac u njima više nije mogao jasno pročitati. No ti su fragmenti bili dovoljni da se obnovi njegov rad. Model je primijenio poznatu matematičku metodu, dobio niz brojeva i počeo ga vrtjeti unatrag. Trebalo je doći do samog početka: koji je broj prvi unesen u generator da bi on izbacio upravo takav rezultat?</p>
+<p>Kad su početni brojevi pronađeni, Claude je provjerio ne krije li se iza njih vrijeme. Računala ga često zapisuju kao broj sekundi proteklih od početka 1970. godine. U takvom su se čitanju brojevi pretvorili u datume s kraja devedesetih, baš iz razdoblja pripreme standarda. Zatim je hipoteza provjerena unatrag: pokrenut je isti generator od pronađenog vremena i dobivene su objavljene početne vrijednosti, do posljednjeg bajta. Tako je bilo moguće reproducirati početne vrijednosti svih pet krivulja od P-192 do P-521. Za to nije bilo potrebno pogađati zaboravljenu šalu: početni broj programu su davali sistemski satovi.</p>
+<p>Unutarnji monolog modela, prikazan u objavi Anthropic-a, čita se gotovo kao scena iz znanstvene fantastike: najprije primjećuje da „ovo rješava 25-godišnju zagonetku”, zatim počinje sumnjati nalazi li se u umjetno stvorenoj testnoj okolini, a na kraju se sam uvjerava računom — takvo 160-bitno podudaranje iz 32-bitne početne vrijednosti praktički isključuje slučajnost. Time se ovaj nalaz ugodno razlikuje od glasnih AI senzacija koje se ne mogu provjeriti ili ih već sljedeći dan osporavaju. Tako je bilo i s nedavno objavljenim navodnim dešifriranjem šifre Cyphral Distich Urquharta od strane modela Fable 5.1: već sljedeći dan istraživači iz Reticulija izvijestili su da rezultat nisu uspjeli reproducirati i da su u predloženoj metodi našli proturječja. Ovdje je kratki provjerni Python skript objavljen u javno vlasništvo (CC0) i daje, bajt po bajt, svih pet NIST-ovih početnih vrijednosti, a pomak vremena pokretanja za samo jednu sekundu potpuno mijenja rezultat.</p>
+<p>Nekoliko detalja ipak je ostalo neobjašnjeno. Jedna od početnih vrijednosti i dio drugih parametara nisu odgovarali pronađenim receptima. A pri odabiru krivulja program je ponekad preskakao odgovarajuće varijante; zašto, nije poznato. Autori istraživanja također napominju: teoretski se moglo prebirati samo vrijeme pokretanja i rezultat podešavati prema željenom svojstvu. Pronađeni recept znatno sužava prostor za takvo namještanje, ali ne pokazuje koliko su pokušaja napravili tvorci standarda.</p>
+<p>Za Valsordu je glavni odgovor bio dovoljan: prepisao je provjeru u Go i priznao prijavu pobjedničkom. Autori su odlučili nagradu usmjeriti organizaciji Internet Security Research Group, koja razvija Let’s Encrypt; pri donaciji u humanitarne svrhe njezin se iznos utrostručuje, na 36 864 dolara. Među autorima se našao i Steve Weis, koji je nekoć bezuspješno tražio dokumente od NSA-e. Sada je podrijetlo brojeva uspjelo biti rekonstruirano i bez tih arhiva: u osnovi su bili otkucaji sata s kraja devedesetih. Za korisnike je to dobra vijest: nalaz ne znači proboj sigurnosti, pa postavke ne treba mijenjati. Za developere ovdje postoji i upozorenje: tajni ključ ne smije se dobivati na isti način. Ako znate približno vrijeme pokretanja, mogli biste ga pogoditi. Javnim parametrima standarda reproducibilnost pomaže vratiti povjerenje; tajnama je ona zabranjena.</p>
+</div>
+  <p class="source">Izvor: <a href="https://habr.com/ru/news/1095620/" rel="noopener nofollow">Habr vijesti</a></p>
+</article>
+
+<footer>
+  <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+
+</body>
+</html>
