@@ -43,3 +43,23 @@ h1{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.2;margin:.2em 0 .4em}
 footer{margin-top:56px;font-size:.9rem;color:var(--muted)}
 /* pravne stranice (privacy, terms) */
 .narrow{max-width:760px}.narrow header{margin-bottom:20px}.narrow li,.narrow p{color:var(--muted)}
+
+/* tri stupca po kategorijama (na mobitelu jedan ispod drugoga) */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+.col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.col-title{font-size:1.05rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:0;
+  padding-bottom:8px;border-bottom:2px solid var(--accent)}
+.card-link{display:block;text-decoration:none;color:inherit}
+.card h3{font-size:1.05rem;line-height:1.3;margin:.2em 0 .4em}
+/* reakcije */
+.votes{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:28px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+.votes.compact{margin:0;padding:10px 18px 14px;border-top:1px solid var(--line)}
+.votes-q{font-weight:600;margin-right:6px}
+.vote{font:inherit;font-size:.9rem;cursor:pointer;background:transparent;color:var(--fg);border:1px solid var(--line);
+  border-radius:999px;padding:4px 12px;line-height:1.4}
+.vote:hover{border-color:var(--accent)}
+.vote.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.votes.done .vote:not(.on){opacity:.5;cursor:default}
+.views{margin-left:auto;color:var(--muted);font-size:.85rem}
+.col .card-body p:not(.meta){display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}

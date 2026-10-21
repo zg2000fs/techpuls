@@ -25,7 +25,7 @@
   <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
 </header>
 
-<article class="post">
+<article class="post" data-view-id="1897">
   <p class="meta"><a href="../../">← Svi članci</a> · 21. listopada 2026. · IGN</p>
   <h1>Sony je objavio PS5 firmware 26.07-14.20.00 od 1,2 GB</h1>
   <figure class="hero-wrap"><img class="hero" src="../../assets/img/1897.jpg" alt="" width="1200" height="675"></figure>
@@ -39,12 +39,49 @@
 <p>IGN navodi da bi GTA 6, koji izlazi za manje od mjesec dana, mogao tražiti barem verziju 14.20. Ako se to pokaže točnim, novi jailbreak za taj firmware mogao bi ponovno otvoriti pitanje sigurnosti PS5 konzole, a Sony bi prije 19. studenoga mogao objaviti još jedan sigurnosni update.</p>
 </div>
   <p class="source">Izvor: <a href="https://www.ign.com/articles/sony-issues-new-ps5-firmware-update-as-jailbreak-race-heats-up-ahead-of-gta-6-release" rel="noopener nofollow">IGN</a></p>
+  <div class="votes" data-id="1897">
+  <span class="votes-q">Je li vam se svidio članak?</span>
+  <button type="button" class="vote" data-kind="like" aria-label="Sviđa mi se">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="Ne sviđa mi se">👎 <span>0</span></button>
+  <span class="views" title="Broj čitanja">👁 0</span>
+</div>
 </article>
 
 <footer>
   <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
 </footer>
 </main>
-
+<script>
+// Reakcije se broje anonimno (bez kolačića i osobnih podataka): klik poveća brojač, a jedan glas po članku
+// pamti se samo u ovom pregledniku.
+(() => {
+  const API = "https://abacus.jasoncameron.dev/hit/techpuls-zg2000fs/a";
+  const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
+  for (const box of document.querySelectorAll('.votes')) {
+    const id = box.dataset.id, key = 'tp-vote-' + id;
+    const mark = kind => box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === kind));
+    if (store.get(key)) { mark(store.get(key)); box.classList.add('done'); }
+    box.addEventListener('click', ev => {
+      const btn = ev.target.closest('.vote');
+      if (!btn || store.get(key)) return;
+      ev.preventDefault();
+      const kind = btn.dataset.kind, num = btn.querySelector('span');
+      store.set(key, kind); mark(kind); box.classList.add('done');
+      num.textContent = (+num.textContent || 0) + 1;
+      fetch(API + id + '-' + kind).then(r => r.json()).then(d => { if (d.value > 0) num.textContent = d.value; }).catch(() => {});
+    });
+  }
+  const view = document.querySelector('[data-view-id]');
+  if (view) {
+    const id = view.dataset.viewId, seen = 'tp-seen-' + id;
+    let first = true;
+    try { first = !sessionStorage.getItem(seen); sessionStorage.setItem(seen, '1'); } catch (e) {}
+    if (first) fetch(API + id + '-view').then(r => r.json()).then(d => {
+      const v = document.querySelector('.votes .views'); if (v && d.value > 0) v.textContent = '👁 ' + d.value;
+    }).catch(() => {});
+  }
+})();
+</script>
 </body>
 </html>
