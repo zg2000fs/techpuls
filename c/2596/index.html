@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="TuhX2Pv0br9KzBFJDXoLJedgTyHO6eeoU7BuYXZc0H4" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>WPSplinter: Broadcomova greška iz starog koda ugrožava milijune routera – TechPuls</title>
+<meta name="description" content="Istraživač Quentin Kaiser otkrio je ranjivost WPSplinter u starom Broadcomovu kodu za WPS. Napadač u dometu Wi-Fi signala može čitati memoriju routera ili na njemu izvršiti kod, bez lozinke i internetske veze. Prema Kaiserovoj procjeni, ranjivo bi moglo biti nekoliko stotina milijuna routera.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="WPSplinter: Broadcomova greška iz starog koda ugrožava milijune routera – TechPuls">
+<meta property="og:description" content="Istraživač Quentin Kaiser otkrio je ranjivost WPSplinter u starom Broadcomovu kodu za WPS. Napadač u dometu Wi-Fi signala može čitati memoriju routera ili na njemu izvršiti kod, bez lozinke i internetske veze. Prema Kaiserovoj procjeni, ranjivo bi moglo biti nekoliko stotina milijuna routera.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/img/2596.jpg">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/2596/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/c/2596/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post" data-view-id="2596">
+  <p class="meta"><a href="../../">← Svi članci</a> · 21. listopada 2026. · iXBT</p>
+  <h1>WPSplinter: Broadcomova greška iz starog koda ugrožava milijune routera</h1>
+  <figure class="hero-wrap"><img class="hero" src="../../assets/img/2596.jpg" alt="" width="1200" height="675"></figure>
+  <p class="lead">Istraživač Quentin Kaiser otkrio je ranjivost WPSplinter u starom Broadcomovu kodu za WPS. Napadač u dometu Wi-Fi signala može čitati memoriju routera ili na njemu izvršiti kod, bez lozinke i internetske veze. Prema Kaiserovoj procjeni, ranjivo bi moglo biti nekoliko stotina milijuna routera.</p>
+  
+  <div class="body"><p>Sigurnosni istraživač Quentin Kaiser otkrio je ranjivost WPSplinter u starom Broadcomovu kodu koji se koristi u milijunima kućnih routera i internetskih gatewaya. Napadač koji se nalazi u dometu Wi-Fi signala može čitati memoriju uređaja ili na njemu izvršiti proizvoljan kod. Ne treba mu lozinka mreže, a ne mora ni dovršiti postupak povezivanja preko WPS-a, funkcije koja omogućuje spajanje uređaja pritiskom na tipku na routeru. Kaiser je o tome govorio 16. listopada na konferenciji Hexacon u Parizu. Prema njegovoj procjeni, u svijetu bi moglo biti ranjivo nekoliko stotina milijuna routera.</p>
+<h2>Demonstracija na uređajima belgijskih providera</h2>
+<p>Kaiser je exploit pokazao na opremi belgijskih providera. Na gatewayu Askey TCG3000, koji isporučuje Orange Belgium, izvukao je Wi-Fi ključ iz trajne memorije uređaja, poslao ga bežičnim putem i potom se spojio na mrežu. Na uređaju Proximus BBOX3V+ proizvođača Sagemcom dobio je udaljeni pristup shellu routera. Napadač pritom nije koristio internetsku vezu. Kaiser navodi da je napad moguć i na većoj udaljenosti, sve dok postoji radijski signal.</p>
+<p>Ranjivost se nalazi u Broadcomovoj implementaciji WPS-a. Nije povezana s poznatom slabošću WPS PIN-a o kojoj se mnogo pisalo početkom 2010-ih.</p>
+<h2>Broadcom je za grešku znao od 2018.</h2>
+<p>Prema Kaiseru, Broadcom je za grešku znao još 2018. Tvrtka je izjavila da je ranjivi kod ispravila i uputila ga na proizvođače krajnjih uređaja. Kaiser smatra da tadašnji popravak nije bio potpun. Broadcom je također odbio zatražiti CVE oznaku, standardni broj za evidentiranje i praćenje ranjivosti, uz obrazloženje da je kod zastario i da mu je istekla podrška. Bez te oznake informacija možda nije stigla u sustave obavještavanja i ažuriranja koje koriste proizvođači routera i provideri.</p>
+<p>Kaiser je ranjivost potvrdio na uređajima tri od četiri najveća belgijska providera: Proximusa, Orangea i VOO-a. Među potencijalno pogođenom opremom navodi i modele tvrtki Cisco, TP-Link, Netgear, Nokia, ZTE i Zyxel. Objavljeni popis smatra nepotpunim.</p>
+<h2>Što korisnici mogu napraviti</h2>
+<p>Promjena lozinke Wi-Fi mreže ne uklanja rizik, jer se napad odvija prije prijave u mrežu. Isključivanje WPS-a može smanjiti opasnost, ali prema Kaiserovu upozorenju ne znači da je ranjivi kod isključen. Kao pouzdaniju mjeru preporučuje isključiti Wi-Fi na gatewayu providera, prebaciti ga u bridge mode i koristiti vlastiti router s aktualnim firmwareom. Za provjeru opreme Kaiser je na GitHubu objavio skriptu koja otkriva ranjivost.</p>
+</div>
+  <p class="source">Izvor: <a href="https://www.ixbt.com/news/2026/10/21/milliony-routerov-uiazvimy-dlia-vzloma-po-wi-fi-iz-za-osibki-kotoruiu-ne-ispravili-za-16-let.html" rel="noopener nofollow">iXBT</a></p>
+  <div class="votes" data-id="2596">
+  <span class="votes-q">Je li vam se svidio članak?</span>
+  <button type="button" class="vote" data-kind="like" aria-label="Sviđa mi se">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="Ne sviđa mi se">👎 <span>0</span></button>
+  <span class="views" title="Broj čitanja">👁 0</span>
+</div>
+</article>
+
+<footer>
+  <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+<script>
+// Reakcije se broje anonimno (bez kolačića i osobnih podataka): klik poveća brojač, a jedan glas po članku
+// pamti se samo u ovom pregledniku.
+(() => {
+  const API = "https://abacus.jasoncameron.dev/hit/techpuls-zg2000fs/a";
+  const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
+  for (const box of document.querySelectorAll('.votes')) {
+    const id = box.dataset.id, key = 'tp-vote-' + id;
+    const mark = kind => box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === kind));
+    if (store.get(key)) { mark(store.get(key)); box.classList.add('done'); }
+    box.addEventListener('click', ev => {
+      const btn = ev.target.closest('.vote');
+      if (!btn || store.get(key)) return;
+      ev.preventDefault();
+      const kind = btn.dataset.kind, num = btn.querySelector('span');
+      store.set(key, kind); mark(kind); box.classList.add('done');
+      num.textContent = (+num.textContent || 0) + 1;
+      fetch(API + id + '-' + kind).then(r => r.json()).then(d => { if (d.value > 0) num.textContent = d.value; }).catch(() => {});
+    });
+  }
+  const view = document.querySelector('[data-view-id]');
+  if (view) {
+    const id = view.dataset.viewId, seen = 'tp-seen-' + id;
+    let first = true;
+    try { first = !sessionStorage.getItem(seen); sessionStorage.setItem(seen, '1'); } catch (e) {}
+    if (first) fetch(API + id + '-view').then(r => r.json()).then(d => {
+      const v = document.querySelector('.votes .views'); if (v && d.value > 0) v.textContent = '👁 ' + d.value;
+    }).catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>
