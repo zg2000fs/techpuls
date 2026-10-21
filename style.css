@@ -63,3 +63,18 @@ footer{margin-top:56px;font-size:.9rem;color:var(--muted)}
 .votes.done .vote:not(.on){opacity:.5;cursor:default}
 .views{margin-left:auto;color:var(--muted);font-size:.85rem}
 .col .card-body p:not(.meta){display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+
+/* mobitel: kartice tema umjesto dugog skrolanja kroz sve tri teme */
+.tabs{display:none}
+@media (max-width:900px){
+  .tabs{display:flex;gap:8px;position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;margin:-4px 0 14px;
+    border-bottom:1px solid var(--line)}
+  .tab{flex:1;font:inherit;font-weight:700;font-size:.95rem;cursor:pointer;border:1px solid var(--line);background:var(--card);
+    color:var(--fg);border-radius:999px;padding:8px 6px;white-space:nowrap}
+  .tab span{font-weight:400;color:var(--muted);font-size:.8rem}
+  .tab.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .tab.on span{color:#e6fbfb}
+  .cols:not(.searching) .col:not(.on){display:none}
+  .cols:not(.searching) .col-title{display:none}
+  #list{scroll-margin-top:64px}
+}

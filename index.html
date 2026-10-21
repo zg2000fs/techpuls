@@ -33,9 +33,18 @@
   <input id="q" type="search" placeholder="Pretraži članke…" aria-label="Pretraži članke" autocomplete="off">
 </section>
 
+<nav class="tabs" id="tabs" aria-label="Teme">
+
+  <button type="button" class="tab on" data-col="ai">AI <span>10</span></button>
+
+  <button type="button" class="tab" data-col="igre">Igre <span>9</span></button>
+
+  <button type="button" class="tab" data-col="tech">Tehnologija <span>13</span></button>
+
+</nav>
 <section class="cols" id="list">
 
-  <div class="col">
+  <div class="col on" id="col-ai" data-col="ai">
     <h2 class="col-title">AI</h2>
     
     <article class="card" data-text="anthropic: claude je dizajnirao 17 proteinskih bindera protiv škorpionova otrova anthropic tvrdi da je claude predložio proteinske dizajne koji bi mogli vezati toksin iz škorpionova otrova. tvrtka navodi 17 kandidata koji su prošli testiranje partnera, ali kaže da to nije dokazani lijek ni antidot. objavila je 211 rješenja i pripadajuće podatke za daljnje istraživanje. gigazine">
@@ -210,7 +219,7 @@
     
   </div>
 
-  <div class="col">
+  <div class="col" id="col-igre" data-col="igre">
     <h2 class="col-title">Igre</h2>
     
     <article class="card" data-text="sony je objavio ps5 firmware 26.07-14.20.00 od 1,2 gb sony je izdao novi ps5 firmware 26.07-14.20.00, a update je odmah dostupan i velik je nešto više od 1 gb. u službenim bilješkama tvrtka navodi samo poboljšanja poruka i upotrebljivosti na nekim zaslonima. zajednica navodno prati novi jailbreak, dok ign navodi da bi gta 6 mogao tražiti barem verziju 14.20. ign">
@@ -368,7 +377,7 @@
     
   </div>
 
-  <div class="col">
+  <div class="col" id="col-tech" data-col="tech">
     <h2 class="col-title">Tehnologija</h2>
     
     <article class="card" data-text="wpsplinter: broadcomova greška iz starog koda ugrožava milijune routera istraživač quentin kaiser otkrio je ranjivost wpsplinter u starom broadcomovu kodu za wps. napadač u dometu wi-fi signala može čitati memoriju routera ili na njemu izvršiti kod, bez lozinke i internetske veze. prema kaiserovoj procjeni, ranjivo bi moglo biti nekoliko stotina milijuna routera. ixbt">
@@ -610,7 +619,22 @@ q && q.addEventListener('input', () => {
   let shown = 0;
   for (const c of cards) { const ok = words.every(w => c.dataset.text.includes(w)); c.hidden = !ok; shown += ok; }
   if (empty) empty.hidden = shown > 0;
+  // dok se pretražuje, na mobitelu se vide sve teme
+  document.getElementById('list').classList.toggle('searching', words.length > 0);
 });
+// mobitel: kartice tema (zadnja odabrana tema se pamti)
+const tabs = [...document.querySelectorAll('#tabs .tab')], cols = [...document.querySelectorAll('#list .col')];
+const pick = key => {
+  tabs.forEach(t => t.classList.toggle('on', t.dataset.col === key));
+  cols.forEach(c => c.classList.toggle('on', c.dataset.col === key));
+  try { localStorage.setItem('tp-tab', key); } catch (e) {}
+};
+tabs.forEach(t => t.addEventListener('click', () => {
+  pick(t.dataset.col);
+  const list = document.getElementById('list');
+  if (list.getBoundingClientRect().top < 0) list.scrollIntoView({behavior: 'smooth'});
+}));
+try { const saved = localStorage.getItem('tp-tab'); if (saved && tabs.some(t => t.dataset.col === saved)) pick(saved); } catch (e) {}
 </script>
 <script>
 // Reakcije se broje anonimno (bez kolačića i osobnih podataka): klik poveća brojač, a jedan glas po članku
