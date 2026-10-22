@@ -39,6 +39,10 @@ h1{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.2;margin:.2em 0 .4em}
 .body td,.body th{border:1px solid var(--line);padding:6px 10px}
 .short{max-width:340px;margin:8px auto 28px;aspect-ratio:9/16}
 .short iframe{width:100%;height:100%;border:0;border-radius:16px}
+.links{margin-top:28px;padding:14px 18px;border:1px solid var(--line);border-radius:10px}
+.links h2{margin:0 0 6px;font-size:1rem}
+.links ul{margin:0;padding-left:18px}
+.links li{margin:4px 0}
 .source{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
 footer{margin-top:56px;font-size:.9rem;color:var(--muted)}
 /* pravne stranice (privacy, terms) */
