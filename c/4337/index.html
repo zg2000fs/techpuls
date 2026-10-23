@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>Claude pronašao gotovo 500 sigurnosnih propusta u 25 open source projekata, jedan je stariji od 21 godinu – TechPuls</title>
+<meta name="description" content="Anthropic je pomoću modela Claude pregledao 25 velikih open source projekata i pronašao gotovo 500 sigurnosnih problema. Među njima je propust u konfiguraciji star 21 godinu, a u OpenSSH-u je nakon prijave ispravljen kod dostupan neautoriziranim klijentima. Metode istraživanja Anthropic je spojio u alat koji bi trebao uskoro ući u OSS-Scanner.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Claude pronašao gotovo 500 sigurnosnih propusta u 25 open source projekata, jedan je stariji od 21 godinu – TechPuls">
+<meta property="og:description" content="Anthropic je pomoću modela Claude pregledao 25 velikih open source projekata i pronašao gotovo 500 sigurnosnih problema. Među njima je propust u konfiguraciji star 21 godinu, a u OpenSSH-u je nakon prijave ispravljen kod dostupan neautoriziranim klijentima. Metode istraživanja Anthropic je spojio u alat koji bi trebao uskoro ući u OSS-Scanner.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/img/4337.jpg">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/4337/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/c/4337/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-10-23T09:00:00+00:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Claude pronašao gotovo 500 sigurnosnih propusta u 25 open source projekata, jedan je stariji od 21 godinu", "description": "Anthropic je pomoću modela Claude pregledao 25 velikih open source projekata i pronašao gotovo 500 sigurnosnih problema. Među njima je propust u konfiguraciji star 21 godinu, a u OpenSSH-u je nakon prijave ispravljen kod dostupan neautoriziranim klijentima. Metode istraživanja Anthropic je spojio u alat koji bi trebao uskoro ući u OSS-Scanner.", "datePublished": "2026-10-23T09:00:00+00:00", "dateModified": "2026-10-23T09:00:00+00:00", "mainEntityOfPage": "https://zg2000fs.github.io/techpuls/c/4337/", "inLanguage": "hr", "author": {"@type": "Organization", "name": "TechPuls", "url": "https://zg2000fs.github.io/techpuls/"}, "publisher": {"@type": "Organization", "name": "TechPuls", "logo": {"@type": "ImageObject", "url": "https://zg2000fs.github.io/techpuls/assets/apple-touch-icon.png"}}, "image": ["https://zg2000fs.github.io/techpuls/assets/img/4337.jpg"]}</script>
+
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post" data-view-id="4337">
+  <p class="meta"><a href="../../">← Svi članci</a> · 23. listopada 2026. · 3DNews</p>
+  <h1>Claude pronašao gotovo 500 sigurnosnih propusta u 25 open source projekata, jedan je stariji od 21 godinu</h1>
+  <figure class="hero-wrap"><img class="hero" src="../../assets/img/4337.jpg" alt="" width="1200" height="675"></figure>
+  <p class="lead">Anthropic je pomoću modela Claude pregledao 25 velikih open source projekata i pronašao gotovo 500 sigurnosnih problema. Među njima je propust u konfiguraciji star 21 godinu, a u OpenSSH-u je nakon prijave ispravljen kod dostupan neautoriziranim klijentima. Metode istraživanja Anthropic je spojio u alat koji bi trebao uskoro ući u OSS-Scanner.</p>
+  
+  <div class="body"><p>Anthropic je pregledao 25 velikih open source projekata pisanih u jezicima C, C++, Java, PHP i Python. Pronašao je gotovo 500 sigurnosnih problema, među njima zaštitne mehanizme koje je poništio sukob u postavkama, kod dostupan prije autentifikacije i propust star 21 godinu.</p>
+<p>Ovaj put Anthropic nije tražio pojedinačne ranjivosti. Taj pristup opisuju kao &quot;sizifov posao&quot;, jer se slabo skalira i ne jamči sigurnost. Cilj je bio smanjiti površinu napada i ukloniti nepotreban pristup kodu koji bi napadači mogli iskoristiti.</p>
+<p>Projekti imaju više od 5 milijuna linija koda. Claude je sastavio popis od više od 17.000 konfiguracijskih parametara, a 3842 od njih utječu na sigurnost.</p>
+<h2>Tri scenarija i rezultati</h2>
+<p>Istraživanje je obuhvatilo tri slučaja u kojima je pristup dijelovima koda neopravdan. To su funkcije koje su po defaultu uključene, a nisu potrebne za rad, kombinacije postavki koje zajedno slabe zaštitu te pretjerano složen kod koji se izvršava prije sigurnosnih provjera.</p>
+<p>Svih 11 projekata namijenjenih radu s autoriziranim korisnicima sadržavalo je kod kojem se moglo pristupiti, iako to nije trebalo biti moguće. Pronađeno je:</p>
+<ul>
+<li>93 površine napada dostupne prije autentifikacije u zadanim konfiguracijama</li>
+<li>37 slučajeva izvršavanja koda prije prolaska autentifikacije</li>
+<li>61 kombinacija postavki koja slabi zaštitu prije autentifikacije</li>
+</ul>
+<p>U svih 25 projekata pronađene su i 162 kombinacije postavki za koje dokumentacija ne opisuje očekivano ponašanje. Negdje je to isključivalo zaštitu, a drugdje uzrokovalo nekonzistentnosti i greške.</p>
+<p>Jedan propust u konfiguraciji ostao je neprimijećen više od dva desetljeća. Jedna postavka tražila je od korisnika potvrdu identiteta certifikatima, a druga je tu provjeru potpuno isključivala, iako ju je trebala samo privremeno odgoditi.</p>
+<h2>Primjer: OpenSSH</h2>
+<p>U OpenSSH-u, programu za sigurni udaljeni pristup, daemon je mogao pristupiti 4500 linija eksperimentalnog koda prije nego što bi se provjerilo dopušta li konfiguracija servera takvu operaciju. Riječ je o implementaciji postkvantnog algoritma digitalnog potpisa. Sam algoritam bio je po defaultu isključen, ali je kod za obradu njegovih podataka bio dostupan neautoriziranim klijentima.</p>
+<p>Nakon Anthropicove prijave razvojni tim OpenSSH-a ispravio je problem u verziji 10.6. Oko 20 posto koda više nije dostupno neautoriziranim korisnicima.</p>
+<h2>Alat za OSS-Scanner</h2>
+<p>Metode iz istraživanja Anthropicovi su inženjeri spojili u poseban alat za Claude. Uskoro bi ga trebali integrirati u OSS-Scanner, besplatni servis za provjeru sigurnosti open source projekata. Alat analizira zadane konfiguracije, dijelove koda dostupne prije sigurnosnih provjera i postavke koje su međusobno u sukobu.</p>
+<p>Pronađene ranjivosti sustav će provjeravati dinamičkim praćenjem izvršavanja programa i usporedbom s trenutnim ponašanjem sustava. Razvojne timove obavijestit će o promjenama koje bi mogle narušiti rad softwarea.</p>
+</div>
+  
+  <p class="source">Izvor: <a href="https://3dnews.ru/1150354" rel="noopener nofollow">3DNews</a></p>
+  <div class="votes" data-id="4337">
+  <span class="votes-q">Je li vam se svidio članak?</span>
+  <button type="button" class="vote" data-kind="like" aria-label="Sviđa mi se">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="Ne sviđa mi se">👎 <span>0</span></button>
+  <span class="views" title="Broj čitanja">👁 0</span>
+</div>
+</article>
+
+<footer>
+  <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+<script>
+// Reakcije se broje anonimno (bez kolačića i osobnih podataka): klik poveća brojač, a jedan glas po članku
+// pamti se samo u ovom pregledniku.
+(() => {
+  const API = "https://abacus.jasoncameron.dev/hit/techpuls-zg2000fs/a";
+  const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
+  for (const box of document.querySelectorAll('.votes')) {
+    const id = box.dataset.id, key = 'tp-vote-' + id;
+    const mark = kind => box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === kind));
+    if (store.get(key)) { mark(store.get(key)); box.classList.add('done'); }
+    box.addEventListener('click', ev => {
+      const btn = ev.target.closest('.vote');
+      if (!btn || store.get(key)) return;
+      ev.preventDefault();
+      const kind = btn.dataset.kind, num = btn.querySelector('span');
+      store.set(key, kind); mark(kind); box.classList.add('done');
+      num.textContent = (+num.textContent || 0) + 1;
+      fetch(API + id + '-' + kind).then(r => r.json()).then(d => { if (d.value > 0) num.textContent = d.value; }).catch(() => {});
+    });
+  }
+  const view = document.querySelector('[data-view-id]');
+  if (view) {
+    const id = view.dataset.viewId, seen = 'tp-seen-' + id;
+    let first = true;
+    try { first = !sessionStorage.getItem(seen); sessionStorage.setItem(seen, '1'); } catch (e) {}
+    if (first) fetch(API + id + '-view').then(r => r.json()).then(d => {
+      const v = document.querySelector('.votes .views'); if (v && d.value > 0) v.textContent = '👁 ' + d.value;
+    }).catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>
