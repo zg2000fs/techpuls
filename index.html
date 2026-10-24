@@ -1335,24 +1335,51 @@ tabs.forEach(t => t.addEventListener('click', () => {
 try { const saved = localStorage.getItem('tp-tab'); if (saved && tabs.some(t => t.dataset.col === saved)) pick(saved); } catch (e) {}
 </script>
 <script>
-// Reakcije se broje anonimno (bez kolačića i osobnih podataka): klik poveća brojač, a jedan glas po članku
-// pamti se samo u ovom pregledniku.
+// Reakcije se broje anonimno (bez kolačića i osobnih podataka). Javni brojač se može samo povećati, zato se
+// povučeni glas broji na zasebnom brojaču "-undo", a prikazuje se razlika. Tvoj glas pamti samo ovaj preglednik.
 (() => {
-  const API = "https://abacus.jasoncameron.dev/hit/techpuls-zg2000fs/a";
+  const BASE = "https://abacus.jasoncameron.dev", NS = "techpuls-zg2000fs";
+  const hit = (id, k) => fetch(`${BASE}/hit/${NS}/a${id}-${k}`).then(r => r.json()).then(d => d.value || 0);
+  const get = (id, k) => fetch(`${BASE}/get/${NS}/a${id}-${k}`).then(r => r.ok ? r.json() : { value: 0 })
+                          .then(d => d.value || 0).catch(() => null);
   const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
-                  set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} } };
+                  set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} } };
+  const live = !!document.querySelector('[data-view-id]');  // na stranici članka brojke se čitaju uživo
+
   for (const box of document.querySelectorAll('.votes')) {
     const id = box.dataset.id, key = 'tp-vote-' + id;
-    const mark = kind => box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === kind));
-    if (store.get(key)) { mark(store.get(key)); box.classList.add('done'); }
+    const num = kind => box.querySelector(`.vote[data-kind="${kind}"] span`);
+    const add = (kind, d) => { const n = num(kind); n.textContent = Math.max(0, (+n.textContent || 0) + d); };
+    const mark = () => {
+      const mine = store.get(key);
+      box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === mine));
+      box.classList.toggle('done', !!mine);
+    };
+    mark();
+    if (live) {
+      for (const kind of ['like', 'dislike']) {
+        Promise.all([get(id, kind), get(id, kind + '-undo')]).then(([h, u]) => {
+          if (h === null || u === null) return;
+          let v = Math.max(0, h - u);
+          if (store.get(key) === kind && v === 0) v = 1;  // tvoj glas je tu, i ako brojač još kasni
+          num(kind).textContent = v;
+        });
+      }
+    } else if (store.get(key) && (+num(store.get(key)).textContent || 0) === 0) {
+      num(store.get(key)).textContent = 1;  // naslovna: brojke su s zadnje objave, tvoj glas se vidi odmah
+    }
     box.addEventListener('click', ev => {
       const btn = ev.target.closest('.vote');
-      if (!btn || store.get(key)) return;
+      if (!btn) return;
       ev.preventDefault();
-      const kind = btn.dataset.kind, num = btn.querySelector('span');
-      store.set(key, kind); mark(kind); box.classList.add('done');
-      num.textContent = (+num.textContent || 0) + 1;
-      fetch(API + id + '-' + kind).then(r => r.json()).then(d => { if (d.value > 0) num.textContent = d.value; }).catch(() => {});
+      const kind = btn.dataset.kind, mine = store.get(key);
+      if (mine === kind) {            // isti gumb opet: povuci glas
+        store.set(key, null); add(kind, -1); hit(id, kind + '-undo').catch(() => {});
+      } else {
+        if (mine) { add(mine, -1); hit(id, mine + '-undo').catch(() => {}); }  // prebaci s drugog
+        store.set(key, kind); add(kind, 1); hit(id, kind).catch(() => {});
+      }
+      mark();
     });
   }
   const view = document.querySelector('[data-view-id]');
@@ -1360,8 +1387,8 @@ try { const saved = localStorage.getItem('tp-tab'); if (saved && tabs.some(t => 
     const id = view.dataset.viewId, seen = 'tp-seen-' + id;
     let first = true;
     try { first = !sessionStorage.getItem(seen); sessionStorage.setItem(seen, '1'); } catch (e) {}
-    if (first) fetch(API + id + '-view').then(r => r.json()).then(d => {
-      const v = document.querySelector('.votes .views'); if (v && d.value > 0) v.textContent = '👁 ' + d.value;
+    (first ? hit(id, 'view') : get(id, 'view')).then(v => {
+      const el = document.querySelector('.votes .views'); if (el && v > 0) el.textContent = '👁 ' + v;
     }).catch(() => {});
   }
 })();

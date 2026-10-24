@@ -64,7 +64,7 @@ footer{margin-top:56px;font-size:.9rem;color:var(--muted)}
   border-radius:999px;padding:4px 12px;line-height:1.4}
 .vote:hover{border-color:var(--accent)}
 .vote.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.votes.done .vote:not(.on){opacity:.5;cursor:default}
+.votes.done .vote:not(.on){opacity:.55}
 .views{margin-left:auto;color:var(--muted);font-size:.85rem}
 .col .card-body p:not(.meta){display:-webkit-box;-webkit-line-clamp:4;line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 
