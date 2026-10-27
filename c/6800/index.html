@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>Microsoft Authenticator za Android imao je propust CVE-2026-80097, zakrpa je stigla u rujnu – TechPuls</title>
+<meta name="description" content="Sigurnosni istraživač je opisao propust u Microsoft Authenticatoru za Android koji je zlonamjernoj aplikaciji mogao otvoriti put do account tokena. Problem je bio u autentikacijskom proxyju, a Microsoft je zakrpu objavio u verziji 6.2606.4246, 8. rujna.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Microsoft Authenticator za Android imao je propust CVE-2026-80097, zakrpa je stigla u rujnu – TechPuls">
+<meta property="og:description" content="Sigurnosni istraživač je opisao propust u Microsoft Authenticatoru za Android koji je zlonamjernoj aplikaciji mogao otvoriti put do account tokena. Problem je bio u autentikacijskom proxyju, a Microsoft je zakrpu objavio u verziji 6.2606.4246, 8. rujna.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/img/6800.jpg">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/c/6800/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/c/6800/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-10-26T23:55:49+00:00">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsArticle", "headline": "Microsoft Authenticator za Android imao je propust CVE-2026-80097, zakrpa je stigla u rujnu", "description": "Sigurnosni istraživač je opisao propust u Microsoft Authenticatoru za Android koji je zlonamjernoj aplikaciji mogao otvoriti put do account tokena. Problem je bio u autentikacijskom proxyju, a Microsoft je zakrpu objavio u verziji 6.2606.4246, 8. rujna.", "datePublished": "2026-10-26T23:55:49+00:00", "dateModified": "2026-10-26T23:55:49+00:00", "mainEntityOfPage": "https://zg2000fs.github.io/techpuls/c/6800/", "inLanguage": "hr", "author": {"@type": "Organization", "name": "TechPuls", "url": "https://zg2000fs.github.io/techpuls/"}, "publisher": {"@type": "Organization", "name": "TechPuls", "logo": {"@type": "ImageObject", "url": "https://zg2000fs.github.io/techpuls/assets/apple-touch-icon.png"}}, "image": ["https://zg2000fs.github.io/techpuls/assets/img/6800.jpg"]}</script>
+
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post" data-view-id="6800">
+  <p class="meta"><a href="../../">← Svi članci</a> · 26. listopada 2026. · cnBeta</p>
+  <h1>Microsoft Authenticator za Android imao je propust CVE-2026-80097, zakrpa je stigla u rujnu</h1>
+  <figure class="hero-wrap"><img class="hero" src="../../assets/img/6800.jpg" alt="" width="1200" height="675"></figure>
+  <p class="lead">Sigurnosni istraživač je opisao propust u Microsoft Authenticatoru za Android koji je zlonamjernoj aplikaciji mogao otvoriti put do account tokena. Problem je bio u autentikacijskom proxyju, a Microsoft je zakrpu objavio u verziji 6.2606.4246, 8. rujna.</p>
+  
+  <div class="body"><p>Sigurnosni istraživač Ofek Levien objavio je detalje o propustu CVE-2026-80097 u Microsoft Authenticatoru za Android. Prema njegovu nalazu, zlonamjerna aplikacija može preko autentikacijskog proxya u aplikaciji glumiti drugu, već instaliranu Microsoftovu aplikaciju i tako doći do account tokena.</p>
+<p>Microsoft Authenticator se koristi i kao TOTP generator, ali i kao alat za potvrdu prijave u Microsoftove servise i poslovne račune. Problem je bio u komponenti koju druge aplikacije mogu pozvati. Istraživači su utvrdili da aplikacija koja šalje zahtjev može sama upisati naziv aplikacije, package name, client ID i redirect URL.</p>
+<p>Authenticator je provjeravao redirect URL prema identitetu koji je aplikacija tvrdila da koristi, ali nije provjeravao stvarni identitet aplikacije koja je pokrenula poziv. To je omogućilo prevaru. Kao primjer naveden je scenarij u kojem se zlonamjerna aplikacija predstavi kao Microsoft Teams, koji je već instaliran na uređaju. Ako su potpis i redirect URL vjerodostojni, Authenticator može prihvatiti zahtjev i vratiti stvarni token aplikaciji koja je zahtjev pokrenula.</p>
+<p>Istraživači su testirali više takvih lažnih identiteta. U slučaju Microsoft Teamsa dobili su Microsoft Graph delegirane dozvole koje uključuju čitanje i slanje e-pošte, pristup datotekama, izmjenu kalendara, slanje poruka u Microsoft Teamsu i upravljanje sadržajem u SharePointu. Access tokeni mogu izravno otvarati te resurse, a refresh tokeni mogu služiti za dobivanje novih access tokena dok su valjani.</p>
+<p>Prema nalazu, napadač bi mogao i mijenjati metode autentikacije korisnika te stvarati ili brisati passkeyje. To znači da problem nije ograničen samo na čitanje podataka, nego može zahvatiti i sigurnosne postavke računa.</p>
+<p>Microsoft je propust zakrpao u verziji 6.2606.4246, objavljenoj 8. rujna. Prema istraživačima, ranjive su bile verzije Microsoft Authenticatora za Android od 6.0.0 do 6.2606.4246. Detalji su objavljeni tek nakon 50 dana, kako bi se korisnicima dalo vremena za nadogradnju.</p>
+</div>
+  
+  <p class="source">Izvor: <a href="https://www.cnbeta.com.tw/articles/tech/1583968.htm" rel="noopener nofollow">cnBeta</a></p>
+  <div class="votes" data-id="6800">
+  <span class="votes-q">Je li vam se svidio članak?</span>
+  <button type="button" class="vote" data-kind="like" aria-label="Sviđa mi se">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="Ne sviđa mi se">👎 <span>0</span></button>
+  <span class="views" title="Broj čitanja">👁 0</span>
+</div>
+  
+  <section class="related">
+    <h2>Povezani članci</h2>
+    <ul>
+      <li><a href="../../c/2394/"><img src="../../assets/img/2394.jpg" alt="" loading="lazy" width="120" height="68"><span>PHP 8.2.35 ispravlja dvije kritične ranjivosti koje omogućuju udaljeno izvršavanje koda<small>21. listopada 2026.</small></span></a></li>
+      <li><a href="../../c/2235/"><img src="../../assets/img/2235.jpg" alt="" loading="lazy" width="120" height="68"><span>PHP zakrpa stiže danas: dvije kritične ranjivosti ocijenjene su s 9,2 od 10<small>21. listopada 2026.</small></span></a></li>
+      <li><a href="../../c/2962/"><img src="../../assets/img/2962.jpg" alt="" loading="lazy" width="120" height="68"><span>Musk: Tesla planira &#34;školu&#34; za oko 10.000 Optimus robota, a Terafab prve testne chipove u svibnju i lipnju<small>22. listopada 2026.</small></span></a></li>
+    </ul>
+  </section>
+  
+</article>
+
+<footer>
+  <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+<script>
+// Reakcije se broje anonimno (bez kolačića i osobnih podataka). Javni brojač se može samo povećati, zato se
+// povučeni glas broji na zasebnom brojaču "-undo", a prikazuje se razlika. Tvoj glas pamti samo ovaj preglednik.
+(() => {
+  const BASE = "https://abacus.jasoncameron.dev", NS = "techpuls-zg2000fs";
+  const hit = (id, k) => fetch(`${BASE}/hit/${NS}/a${id}-${k}`).then(r => r.json()).then(d => d.value || 0);
+  const get = (id, k) => fetch(`${BASE}/get/${NS}/a${id}-${k}`).then(r => r.ok ? r.json() : { value: 0 })
+                          .then(d => d.value || 0).catch(() => null);
+  const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} } };
+  const live = !!document.querySelector('[data-view-id]');  // na stranici članka brojke se čitaju uživo
+
+  for (const box of document.querySelectorAll('.votes')) {
+    const id = box.dataset.id, key = 'tp-vote-' + id;
+    const num = kind => box.querySelector(`.vote[data-kind="${kind}"] span`);
+    const add = (kind, d) => { const n = num(kind); n.textContent = Math.max(0, (+n.textContent || 0) + d); };
+    const mark = () => {
+      const mine = store.get(key);
+      box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === mine));
+      box.classList.toggle('done', !!mine);
+    };
+    mark();
+    if (live) {
+      for (const kind of ['like', 'dislike']) {
+        Promise.all([get(id, kind), get(id, kind + '-undo')]).then(([h, u]) => {
+          if (h === null || u === null) return;
+          let v = Math.max(0, h - u);
+          if (store.get(key) === kind && v === 0) v = 1;  // tvoj glas je tu, i ako brojač još kasni
+          num(kind).textContent = v;
+        });
+      }
+    } else if (store.get(key) && (+num(store.get(key)).textContent || 0) === 0) {
+      num(store.get(key)).textContent = 1;  // naslovna: brojke su s zadnje objave, tvoj glas se vidi odmah
+    }
+    box.addEventListener('click', ev => {
+      const btn = ev.target.closest('.vote');
+      if (!btn) return;
+      ev.preventDefault();
+      const kind = btn.dataset.kind, mine = store.get(key);
+      if (mine === kind) {            // isti gumb opet: povuci glas
+        store.set(key, null); add(kind, -1); hit(id, kind + '-undo').catch(() => {});
+      } else {
+        if (mine) { add(mine, -1); hit(id, mine + '-undo').catch(() => {}); }  // prebaci s drugog
+        store.set(key, kind); add(kind, 1); hit(id, kind).catch(() => {});
+      }
+      mark();
+    });
+  }
+  const view = document.querySelector('[data-view-id]');
+  if (view) {
+    const id = view.dataset.viewId, seen = 'tp-seen-' + id;
+    let first = true;
+    try { first = !sessionStorage.getItem(seen); sessionStorage.setItem(seen, '1'); } catch (e) {}
+    (first ? hit(id, 'view') : get(id, 'view')).then(v => {
+      const el = document.querySelector('.votes .views'); if (el && v > 0) el.textContent = '👁 ' + v;
+    }).catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>
