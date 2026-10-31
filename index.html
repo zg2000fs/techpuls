@@ -2,6 +2,8 @@
 <html lang="hr">
 <head>
 <meta charset="utf-8">
+<script>/* povratak s TikTok prijave (Login Kit) ide na stranicu za objavu */
+if (/[?&]state=/.test(location.search) && /[?&](code|error)=/.test(location.search)) location.replace("objava/" + location.search);</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
 <meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
