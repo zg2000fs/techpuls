@@ -32,7 +32,7 @@
   <a class="yt" href="https://zg2000fs.github.io/techpuls/c/21637/" hreflang="hr" lang="hr">Hrvatski</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
 </header>
 
-<article class="post">
+<article class="post" data-view-id="en21637">
   <p class="meta"><a href="../../../en/">← All stories</a> · November 11, 2026 · unwire.hk</p>
   <h1>Japan is developing a two-hour LA plane</h1>
   <figure class="hero-wrap"><img class="hero" src="../../../assets/img/21637.jpg" alt="" width="1200" height="675"></figure>
@@ -46,12 +46,86 @@
   <div class="body"><p>Japan is developing a passenger plane that could reach Los Angeles in two hours. The idea is a hypersonic jet flying at around Mach 5, much faster than Concorde, and researchers in Japan have now simulated that flight on the ground with a small test craft. They say insulation kept the inside near room temperature even as air around the body hit about 1,000 degrees. A real flight test is next, but practical use is still aimed for around 2050.</p></div>
   
   <p class="source">Source: <a href="https://unwire.hk/2026/11/09/japan-mach-5-hypersonic-passenger-aircraft-tokyo-la/fun-tech/" rel="noopener nofollow">unwire.hk</a></p>
+  <div class="votes" data-id="en21637">
+  <span class="votes-q">Did you like this story?</span>
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span>0</span></button>
+  <span class="views" title="Views">👁 0</span>
+</div>
+  
+  <section class="related">
+    <h2>Related stories</h2>
+    <ul>
+      <li><a href="../../../en/c/25602/"><img src="../../../assets/img/25602.jpg" alt="" loading="lazy" width="120" height="68"><span>Hundreds of Grok apps expose private data<small>November 12, 2026</small></span></a></li>
+      <li><a href="../../../en/c/24798/"><img src="../../../assets/img/24798.jpg" alt="" loading="lazy" width="120" height="68"><span>Apple’s next AirPods could get cameras<small>November 12, 2026</small></span></a></li>
+      <li><a href="../../../en/c/19924/"><img src="../../../assets/img/19924.jpg" alt="" loading="lazy" width="120" height="68"><span>A Japanese pop-up is served by waitstaff with dementia<small>November 11, 2026</small></span></a></li>
+    </ul>
+  </section>
+  
 </article>
 
 <footer>
   <a href="../../../en/" hreflang="en">All stories</a> · <a href="../../../" hreflang="hr" lang="hr">Hrvatska verzija</a> · <a href="../../../privacy.html">Privacy Policy</a> · <a href="../../../terms.html">Terms</a> · © 2026 TechPuls
 </footer>
 </main>
+<script>
+// Reakcije se broje anonimno (bez kolačića i osobnih podataka). Javni brojač se može samo povećati, zato se
+// povučeni glas broji na zasebnom brojaču "-undo", a prikazuje se razlika. Tvoj glas pamti samo ovaj preglednik.
+(() => {
+  const BASE = "https://abacus.jasoncameron.dev", NS = "techpuls-zg2000fs";
+  const hit = (id, k) => fetch(`${BASE}/hit/${NS}/a${id}-${k}`).then(r => r.json()).then(d => d.value || 0);
+  const get = (id, k) => fetch(`${BASE}/get/${NS}/a${id}-${k}`).then(r => r.ok ? r.json() : { value: 0 })
+                          .then(d => d.value || 0).catch(() => null);
+  const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} } };
+  const live = !!document.querySelector('[data-view-id]');  // na stranici članka brojke se čitaju uživo
 
+  for (const box of document.querySelectorAll('.votes')) {
+    const id = box.dataset.id, key = 'tp-vote-' + id;
+    const num = kind => box.querySelector(`.vote[data-kind="${kind}"] span`);
+    const add = (kind, d) => { const n = num(kind); n.textContent = Math.max(0, (+n.textContent || 0) + d); };
+    const mark = () => {
+      const mine = store.get(key);
+      box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === mine));
+      box.classList.toggle('done', !!mine);
+    };
+    mark();
+    if (live) {
+      for (const kind of ['like', 'dislike']) {
+        Promise.all([get(id, kind), get(id, kind + '-undo')]).then(([h, u]) => {
+          if (h === null || u === null) return;
+          let v = Math.max(0, h - u);
+          if (store.get(key) === kind && v === 0) v = 1;  // tvoj glas je tu, i ako brojač još kasni
+          num(kind).textContent = v;
+        });
+      }
+    } else if (store.get(key) && (+num(store.get(key)).textContent || 0) === 0) {
+      num(store.get(key)).textContent = 1;  // naslovna: brojke su s zadnje objave, tvoj glas se vidi odmah
+    }
+    box.addEventListener('click', ev => {
+      const btn = ev.target.closest('.vote');
+      if (!btn) return;
+      ev.preventDefault();
+      const kind = btn.dataset.kind, mine = store.get(key);
+      if (mine === kind) {            // isti gumb opet: povuci glas
+        store.set(key, null); add(kind, -1); hit(id, kind + '-undo').catch(() => {});
+      } else {
+        if (mine) { add(mine, -1); hit(id, mine + '-undo').catch(() => {}); }  // prebaci s drugog
+        store.set(key, kind); add(kind, 1); hit(id, kind).catch(() => {});
+      }
+      mark();
+    });
+  }
+  const view = document.querySelector('[data-view-id]');
+  if (view) {
+    const id = view.dataset.viewId, seen = 'tp-seen-' + id;
+    let first = true;
+    try { first = !sessionStorage.getItem(seen); sessionStorage.setItem(seen, '1'); } catch (e) {}
+    (first ? hit(id, 'view') : get(id, 'view')).then(v => {
+      const el = document.querySelector('.votes .views'); if (el && v > 0) el.textContent = '👁 ' + v;
+    }).catch(() => {});
+  }
+})();
+</script>
 </body>
 </html>

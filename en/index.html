@@ -32,94 +32,244 @@
 <section class="intro">
   <h1>Tech news worth knowing</h1>
   <p>AI, games and technology from around the world: short and clear.</p>
+  <input id="q" type="search" placeholder="Search stories…" aria-label="Search stories" autocomplete="off">
 </section>
 
-<div class="grid">
+<nav class="tabs" id="tabs" aria-label="Topics">
 
-  <article class="card">
-    <a class="card-link" href="../en/c/25602/">
-      <img src="../assets/img/25602.jpg" alt="" loading="lazy" width="1200" height="675">
-      <div class="card-body">
-        <p class="meta">November 12, 2026 · ▶ Short</p>
-        <h3>Hundreds of Grok apps expose private data</h3>
-        <p>Researchers say hundreds of apps made with Grok Build can be opened without login and expose sensitive data. Some links were removed after reporters asked, but many apps reportedly remained accessible.</p>
-      </div>
-    </a>
-  </article>
+  <button type="button" class="tab on" data-col="ai">AI <span>1</span></button>
 
-  <article class="card">
-    <a class="card-link" href="../en/c/24798/">
-      <img src="../assets/img/24798.jpg" alt="" loading="lazy" width="1200" height="675">
-      <div class="card-body">
-        <p class="meta">November 12, 2026 · ▶ Short</p>
-        <h3>Apple’s next AirPods could get cameras</h3>
-        <p>A longtime Apple supplier says it’s working on AirPods with cameras that would feed visual data to Apple’s AI. The same supplier is also preparing for Apple’s still-unannounced smart glasses.</p>
-      </div>
-    </a>
-  </article>
+  <button type="button" class="tab" data-col="igre">Games <span>1</span></button>
 
-  <article class="card">
-    <a class="card-link" href="../en/c/17647/">
-      <img src="../assets/img/17647.jpg" alt="" loading="lazy" width="1200" height="675">
-      <div class="card-body">
-        <p class="meta">November 11, 2026 · ▶ Short</p>
-        <h3>A father used AI to turn his TV into a homework lock</h3>
-        <p>A father in China reportedly built an AI-powered TV lock that pauses shows every 10 minutes until his son answers school questions correctly. After the son tried rebooting the TV to escape it, the father updated the system to keep the questions waiting.</p>
-      </div>
-    </a>
-  </article>
+  <button type="button" class="tab" data-col="tech">Tech <span>5</span></button>
 
-  <article class="card">
-    <a class="card-link" href="../en/c/21637/">
-      <img src="../assets/img/21637.jpg" alt="" loading="lazy" width="1200" height="675">
-      <div class="card-body">
-        <p class="meta">November 11, 2026 · ▶ Short</p>
-        <h3>Japan is developing a two-hour LA plane</h3>
-        <p>Japanese researchers are working on a hypersonic passenger plane that could cut Tokyo to Los Angeles trips to about two hours. Ground tests simulated Mach 5 conditions, but real passenger use is still seen as a long-term goal around 2050.</p>
-      </div>
-    </a>
-  </article>
+</nav>
+<section class="cols" id="list">
 
-  <article class="card">
-    <a class="card-link" href="../en/c/19924/">
-      <img src="../assets/img/19924.jpg" alt="" loading="lazy" width="1200" height="675">
-      <div class="card-body">
-        <p class="meta">November 11, 2026 · ▶ Short</p>
-        <h3>A Japanese pop-up is served by waitstaff with dementia</h3>
-        <p>Japan’s Restaurant of Mistaken Orders tells diners their meals might be mixed up because the waitstaff are seniors with dementia. Organizers say the goal is understanding and connection, not perfect service.</p>
-      </div>
-    </a>
-  </article>
-
-  <article class="card">
-    <a class="card-link" href="../en/c/18915/">
-      <img src="../assets/img/18915.jpg" alt="" loading="lazy" width="1200" height="675">
-      <div class="card-body">
-        <p class="meta">November 11, 2026 · ▶ Short</p>
-        <h3>NASA’s X-59 flew to Florida</h3>
-        <p>NASA’s experimental X-59 flew from Alabama to Florida as testing expands. The aircraft is designed to turn a sonic boom into a much softer sound, which could help bring back supersonic passenger flights over land.</p>
-      </div>
-    </a>
-  </article>
-
-  <article class="card">
-    <a class="card-link" href="../en/c/22405/">
-      <img src="../assets/img/22405.jpg" alt="" loading="lazy" width="1200" height="675">
-      <div class="card-body">
-        <p class="meta">November 11, 2026 · ▶ Short</p>
-        <h3>A developer built a spy pigeon game in seven days</h3>
-        <p>COO is a free browser game where you play a robotic pigeon spying across Toronto. It was reportedly built in just seven days, and the creator says the map is so huge he still hasn&#39;t seen 99% of it.</p>
-      </div>
-    </a>
-  </article>
-
+  <div class="col on" id="col-ai" data-col="ai">
+    <h2 class="col-title">AI</h2>
+    
+    <article class="card" data-text="a father used ai to turn his tv into a homework lock a father in china reportedly built an ai-powered tv lock that pauses shows every 10 minutes until his son answers school questions correctly. after the son tried rebooting the tv to escape it, the father updated the system to keep the questions waiting. unwire.hk">
+      <a class="card-link" href="../en/c/17647/">
+        <img src="../assets/img/17647.jpg" alt="" loading="lazy" width="1200" height="675">
+        <div class="card-body">
+          <p class="meta">November 11, 2026 · ▶ Short</p>
+          <h3>A father used AI to turn his TV into a homework lock</h3>
+          <p>A father in China reportedly built an AI-powered TV lock that pauses shows every 10 minutes until his son answers school questions correctly. After the son tried rebooting the TV to escape it, the father updated the system to keep the questions waiting.</p>
+        </div>
+      </a>
+      <div class="votes compact" data-id="en17647">
+  
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span>0</span></button>
+  <span class="views" title="Views">👁 0</span>
 </div>
+    </article>
+    
+  </div>
+
+  <div class="col" id="col-igre" data-col="igre">
+    <h2 class="col-title">Games</h2>
+    
+    <article class="card" data-text="a developer built a spy pigeon game in seven days coo is a free browser game where you play a robotic pigeon spying across toronto. it was reportedly built in just seven days, and the creator says the map is so huge he still hasn&#39;t seen 99% of it. automaton (jp)">
+      <a class="card-link" href="../en/c/22405/">
+        <img src="../assets/img/22405.jpg" alt="" loading="lazy" width="1200" height="675">
+        <div class="card-body">
+          <p class="meta">November 11, 2026 · ▶ Short</p>
+          <h3>A developer built a spy pigeon game in seven days</h3>
+          <p>COO is a free browser game where you play a robotic pigeon spying across Toronto. It was reportedly built in just seven days, and the creator says the map is so huge he still hasn&#39;t seen 99% of it.</p>
+        </div>
+      </a>
+      <div class="votes compact" data-id="en22405">
+  
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span>0</span></button>
+  <span class="views" title="Views">👁 0</span>
+</div>
+    </article>
+    
+  </div>
+
+  <div class="col" id="col-tech" data-col="tech">
+    <h2 class="col-title">Tech</h2>
+    
+    <article class="card" data-text="hundreds of grok apps expose private data researchers say hundreds of apps made with grok build can be opened without login and expose sensitive data. some links were removed after reporters asked, but many apps reportedly remained accessible. cnbeta">
+      <a class="card-link" href="../en/c/25602/">
+        <img src="../assets/img/25602.jpg" alt="" loading="lazy" width="1200" height="675">
+        <div class="card-body">
+          <p class="meta">November 12, 2026 · ▶ Short</p>
+          <h3>Hundreds of Grok apps expose private data</h3>
+          <p>Researchers say hundreds of apps made with Grok Build can be opened without login and expose sensitive data. Some links were removed after reporters asked, but many apps reportedly remained accessible.</p>
+        </div>
+      </a>
+      <div class="votes compact" data-id="en25602">
+  
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span>0</span></button>
+  <span class="views" title="Views">👁 0</span>
+</div>
+    </article>
+    
+    <article class="card" data-text="apple’s next airpods could get cameras a longtime apple supplier says it’s working on airpods with cameras that would feed visual data to apple’s ai. the same supplier is also preparing for apple’s still-unannounced smart glasses. cnbeta">
+      <a class="card-link" href="../en/c/24798/">
+        <img src="../assets/img/24798.jpg" alt="" loading="lazy" width="1200" height="675">
+        <div class="card-body">
+          <p class="meta">November 12, 2026 · ▶ Short</p>
+          <h3>Apple’s next AirPods could get cameras</h3>
+          <p>A longtime Apple supplier says it’s working on AirPods with cameras that would feed visual data to Apple’s AI. The same supplier is also preparing for Apple’s still-unannounced smart glasses.</p>
+        </div>
+      </a>
+      <div class="votes compact" data-id="en24798">
+  
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span>0</span></button>
+  <span class="views" title="Views">👁 0</span>
+</div>
+    </article>
+    
+    <article class="card" data-text="japan is developing a two-hour la plane japanese researchers are working on a hypersonic passenger plane that could cut tokyo to los angeles trips to about two hours. ground tests simulated mach 5 conditions, but real passenger use is still seen as a long-term goal around 2050. unwire.hk">
+      <a class="card-link" href="../en/c/21637/">
+        <img src="../assets/img/21637.jpg" alt="" loading="lazy" width="1200" height="675">
+        <div class="card-body">
+          <p class="meta">November 11, 2026 · ▶ Short</p>
+          <h3>Japan is developing a two-hour LA plane</h3>
+          <p>Japanese researchers are working on a hypersonic passenger plane that could cut Tokyo to Los Angeles trips to about two hours. Ground tests simulated Mach 5 conditions, but real passenger use is still seen as a long-term goal around 2050.</p>
+        </div>
+      </a>
+      <div class="votes compact" data-id="en21637">
+  
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span>0</span></button>
+  <span class="views" title="Views">👁 0</span>
+</div>
+    </article>
+    
+    <article class="card" data-text="a japanese pop-up is served by waitstaff with dementia japan’s restaurant of mistaken orders tells diners their meals might be mixed up because the waitstaff are seniors with dementia. organizers say the goal is understanding and connection, not perfect service. soranews24">
+      <a class="card-link" href="../en/c/19924/">
+        <img src="../assets/img/19924.jpg" alt="" loading="lazy" width="1200" height="675">
+        <div class="card-body">
+          <p class="meta">November 11, 2026 · ▶ Short</p>
+          <h3>A Japanese pop-up is served by waitstaff with dementia</h3>
+          <p>Japan’s Restaurant of Mistaken Orders tells diners their meals might be mixed up because the waitstaff are seniors with dementia. Organizers say the goal is understanding and connection, not perfect service.</p>
+        </div>
+      </a>
+      <div class="votes compact" data-id="en19924">
+  
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span>0</span></button>
+  <span class="views" title="Views">👁 0</span>
+</div>
+    </article>
+    
+    <article class="card" data-text="nasa’s x-59 flew to florida nasa’s experimental x-59 flew from alabama to florida as testing expands. the aircraft is designed to turn a sonic boom into a much softer sound, which could help bring back supersonic passenger flights over land. mydrivers (快科技)">
+      <a class="card-link" href="../en/c/18915/">
+        <img src="../assets/img/18915.jpg" alt="" loading="lazy" width="1200" height="675">
+        <div class="card-body">
+          <p class="meta">November 11, 2026 · ▶ Short</p>
+          <h3>NASA’s X-59 flew to Florida</h3>
+          <p>NASA’s experimental X-59 flew from Alabama to Florida as testing expands. The aircraft is designed to turn a sonic boom into a much softer sound, which could help bring back supersonic passenger flights over land.</p>
+        </div>
+      </a>
+      <div class="votes compact" data-id="en18915">
+  
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span>0</span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span>0</span></button>
+  <span class="views" title="Views">👁 0</span>
+</div>
+    </article>
+    
+  </div>
+
+</section>
+<p id="empty" class="empty" hidden>No stories match your search.</p>
 
 
 <footer>
   <a href="../" hreflang="hr" lang="hr">Hrvatska verzija</a> · <a href="../privacy.html">Privacy Policy</a> · <a href="../terms.html">Terms</a> · © 2026 TechPuls
 </footer>
 </main>
+
+<script>
+const q = document.getElementById('q'), cards = [...document.querySelectorAll('#list .card')], empty = document.getElementById('empty');
+q && q.addEventListener('input', () => {
+  const words = q.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+  let shown = 0;
+  for (const c of cards) { const ok = words.every(w => c.dataset.text.includes(w)); c.hidden = !ok; shown += ok; }
+  if (empty) empty.hidden = shown > 0;
+  document.getElementById('list').classList.toggle('searching', words.length > 0);
+});
+const tabs = [...document.querySelectorAll('#tabs .tab')], cols = [...document.querySelectorAll('#list .col')];
+const pick = key => {
+  tabs.forEach(t => t.classList.toggle('on', t.dataset.col === key));
+  cols.forEach(c => c.classList.toggle('on', c.dataset.col === key));
+  try { localStorage.setItem('tp-tab', key); } catch (e) {}
+};
+tabs.forEach(t => t.addEventListener('click', () => {
+  pick(t.dataset.col);
+  const list = document.getElementById('list');
+  if (list.getBoundingClientRect().top < 0) list.scrollIntoView({behavior: 'smooth'});
+}));
+try { const saved = localStorage.getItem('tp-tab'); if (saved && tabs.some(t => t.dataset.col === saved)) pick(saved); } catch (e) {}
+</script>
+<script>
+// Reakcije se broje anonimno (bez kolačića i osobnih podataka). Javni brojač se može samo povećati, zato se
+// povučeni glas broji na zasebnom brojaču "-undo", a prikazuje se razlika. Tvoj glas pamti samo ovaj preglednik.
+(() => {
+  const BASE = "https://abacus.jasoncameron.dev", NS = "techpuls-zg2000fs";
+  const hit = (id, k) => fetch(`${BASE}/hit/${NS}/a${id}-${k}`).then(r => r.json()).then(d => d.value || 0);
+  const get = (id, k) => fetch(`${BASE}/get/${NS}/a${id}-${k}`).then(r => r.ok ? r.json() : { value: 0 })
+                          .then(d => d.value || 0).catch(() => null);
+  const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} } };
+  const live = !!document.querySelector('[data-view-id]');  // na stranici članka brojke se čitaju uživo
+
+  for (const box of document.querySelectorAll('.votes')) {
+    const id = box.dataset.id, key = 'tp-vote-' + id;
+    const num = kind => box.querySelector(`.vote[data-kind="${kind}"] span`);
+    const add = (kind, d) => { const n = num(kind); n.textContent = Math.max(0, (+n.textContent || 0) + d); };
+    const mark = () => {
+      const mine = store.get(key);
+      box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === mine));
+      box.classList.toggle('done', !!mine);
+    };
+    mark();
+    if (live) {
+      for (const kind of ['like', 'dislike']) {
+        Promise.all([get(id, kind), get(id, kind + '-undo')]).then(([h, u]) => {
+          if (h === null || u === null) return;
+          let v = Math.max(0, h - u);
+          if (store.get(key) === kind && v === 0) v = 1;  // tvoj glas je tu, i ako brojač još kasni
+          num(kind).textContent = v;
+        });
+      }
+    } else if (store.get(key) && (+num(store.get(key)).textContent || 0) === 0) {
+      num(store.get(key)).textContent = 1;  // naslovna: brojke su s zadnje objave, tvoj glas se vidi odmah
+    }
+    box.addEventListener('click', ev => {
+      const btn = ev.target.closest('.vote');
+      if (!btn) return;
+      ev.preventDefault();
+      const kind = btn.dataset.kind, mine = store.get(key);
+      if (mine === kind) {            // isti gumb opet: povuci glas
+        store.set(key, null); add(kind, -1); hit(id, kind + '-undo').catch(() => {});
+      } else {
+        if (mine) { add(mine, -1); hit(id, mine + '-undo').catch(() => {}); }  // prebaci s drugog
+        store.set(key, kind); add(kind, 1); hit(id, kind).catch(() => {});
+      }
+      mark();
+    });
+  }
+  const view = document.querySelector('[data-view-id]');
+  if (view) {
+    const id = view.dataset.viewId, seen = 'tp-seen-' + id;
+    let first = true;
+    try { first = !sessionStorage.getItem(seen); sessionStorage.setItem(seen, '1'); } catch (e) {}
+    (first ? hit(id, 'view') : get(id, 'view')).then(v => {
+      const el = document.querySelector('.votes .views'); if (el && v > 0) el.textContent = '👁 ' + v;
+    }).catch(() => {});
+  }
+})();
+</script>
 
 </body>
 </html>
