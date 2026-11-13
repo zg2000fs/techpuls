@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>Google’s smart glasses now work with iPhone – TechPuls News</title>
+<meta name="description" content="Google’s new Android XR smart glasses support iPhone through Made for iPhone certification. They start at $395 and stop recording if the white camera light is blocked.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Google’s smart glasses now work with iPhone – TechPuls News">
+<meta property="og:description" content="Google’s new Android XR smart glasses support iPhone through Made for iPhone certification. They start at $395 and stop recording if the white camera light is blocked.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/img/25996.jpg">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/en/c/25996/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/en/c/25996/">
+<link rel="stylesheet" href="../../../style.css">
+<link rel="icon" href="../../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+
+<meta property="og:type" content="article">
+<link rel="alternate" hreflang="hr" href="https://zg2000fs.github.io/techpuls/c/25996/">
+
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../../" class="logo"><img src="../../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="https://zg2000fs.github.io/techpuls/c/25996/" hreflang="hr" lang="hr">Hrvatski</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post" data-view-id="">
+  <p class="meta"><a href="../../../en/">← All stories</a> · November 12, 2026 · 9to5Mac</p>
+  <h1>Google’s smart glasses now work with iPhone</h1>
+  <figure class="hero-wrap"><img class="hero" src="../../../assets/img/25996.jpg" alt="" width="1200" height="675"></figure>
+  <p class="lead">Google’s new Android XR smart glasses support iPhone through Made for iPhone certification. They start at $395 and stop recording if the white camera light is blocked.</p>
+  
+  <div class="short">
+    <iframe src="https://www.youtube-nocookie.com/embed/pvj-8ftnbF8" title="TechPuls News Short" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  
+  <div class="body"><p>Google’s new Android XR smart glasses now work with iPhone. Made by Samsung, they can take photos, send messages, give turn by turn directions, and do live translation. Saved photos and clips go straight to the iPhone’s Photos app, but you need an iPhone 13 Pro or newer. Prices start at $395, and if someone covers the white recording light, the glasses stop filming.</p></div>
+  
+  <p class="source">Source: <a href="https://9to5google.com/2026/11/12/google-glasses-iphone-support/" rel="noopener nofollow">9to5Mac</a></p>
+  <div class="votes" data-id="25996">
+  <span class="votes-q">Did you like this story?</span>
+  <button type="button" class="vote" data-kind="like" aria-label="I like it">👍 <span></span></button>
+  <button type="button" class="vote" data-kind="dislike" aria-label="I don't like it">👎 <span></span></button>
+  <span class="views" title="Views">👁 </span>
+</div>
+  
+</article>
+
+<footer>
+  <a href="../../../en/" hreflang="en">All stories</a> · <a href="../../../" hreflang="hr" lang="hr">Hrvatska verzija</a> · <a href="../../../privacy.html">Privacy Policy</a> · <a href="../../../terms.html">Terms</a> · © 2026 TechPuls
+</footer>
+</main>
+<script>
+// Reakcije se broje anonimno (bez kolačića i osobnih podataka). Javni brojač se može samo povećati, zato se
+// povučeni glas broji na zasebnom brojaču "-undo", a prikazuje se razlika. Tvoj glas pamti samo ovaj preglednik.
+(() => {
+  const BASE = "https://abacus.jasoncameron.dev", NS = "techpuls-zg2000fs";
+  const hit = (id, k) => fetch(`${BASE}/hit/${NS}/a${id}-${k}`).then(r => r.json()).then(d => d.value || 0);
+  const get = (id, k) => fetch(`${BASE}/get/${NS}/a${id}-${k}`).then(r => r.ok ? r.json() : { value: 0 })
+                          .then(d => d.value || 0).catch(() => null);
+  const store = { get: k => { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                  set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} } };
+  const live = !!document.querySelector('[data-view-id]');  // na stranici članka brojke se čitaju uživo
+
+  for (const box of document.querySelectorAll('.votes')) {
+    const id = box.dataset.id, key = 'tp-vote-' + id;
+    const num = kind => box.querySelector(`.vote[data-kind="${kind}"] span`);
+    const add = (kind, d) => { const n = num(kind); n.textContent = Math.max(0, (+n.textContent || 0) + d); };
+    const mark = () => {
+      const mine = store.get(key);
+      box.querySelectorAll('.vote').forEach(b => b.classList.toggle('on', b.dataset.kind === mine));
+      box.classList.toggle('done', !!mine);
+    };
+    mark();
+    if (live) {
+      for (const kind of ['like', 'dislike']) {
+        Promise.all([get(id, kind), get(id, kind + '-undo')]).then(([h, u]) => {
+          if (h === null || u === null) return;
+          let v = Math.max(0, h - u);
+          if (store.get(key) === kind && v === 0) v = 1;  // tvoj glas je tu, i ako brojač još kasni
+          num(kind).textContent = v;
+        });
+      }
+    } else if (store.get(key) && (+num(store.get(key)).textContent || 0) === 0) {
+      num(store.get(key)).textContent = 1;  // naslovna: brojke su s zadnje objave, tvoj glas se vidi odmah
+    }
+    box.addEventListener('click', ev => {
+      const btn = ev.target.closest('.vote');
+      if (!btn) return;
+      ev.preventDefault();
+      const kind = btn.dataset.kind, mine = store.get(key);
+      if (mine === kind) {            // isti gumb opet: povuci glas
+        store.set(key, null); add(kind, -1); hit(id, kind + '-undo').catch(() => {});
+      } else {
+        if (mine) { add(mine, -1); hit(id, mine + '-undo').catch(() => {}); }  // prebaci s drugog
+        store.set(key, kind); add(kind, 1); hit(id, kind).catch(() => {});
+      }
+      mark();
+    });
+  }
+  const view = document.querySelector('[data-view-id]');
+  if (view) {
+    const id = view.dataset.viewId, seen = 'tp-seen-' + id;
+    let first = true;
+    try { first = !sessionStorage.getItem(seen); sessionStorage.setItem(seen, '1'); } catch (e) {}
+    (first ? hit(id, 'view') : get(id, 'view')).then(v => {
+      const el = document.querySelector('.votes .views'); if (el && v > 0) el.textContent = '👁 ' + v;
+    }).catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>
