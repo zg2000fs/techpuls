@@ -104,3 +104,7 @@ footer{margin-top:56px;font-size:.9rem;color:var(--muted)}
 .guides p{margin:4px 0 0;color:var(--muted)}
 .aff-box{margin:18px 0;padding:14px 18px;border-radius:10px;border:1px solid #d97757;background:rgba(217,119,87,.08)}
 .aff-box small{color:var(--muted)}
+.top .yt.cc{background:#d97757;color:#faf9f5}
+.cc-banner{display:flex;flex-direction:column;gap:2px;margin:16px 0;padding:14px 18px;border-radius:12px;border:1px solid #d97757;background:rgba(217,119,87,.10);text-decoration:none;color:inherit}
+.cc-banner span{color:var(--muted);font-size:.92rem}
+.cc-banner:hover{background:rgba(217,119,87,.18)}

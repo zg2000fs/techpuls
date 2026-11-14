@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
 <meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
-<title>Claude Code: datoteka CLAUDE.md i naredba /init – TechPuls</title>
-<meta name="description" content="Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: datoteka CLAUDE.md.">
+<title>Claude Code: file CLAUDE.md i naredba /init – TechPuls</title>
+<meta name="description" content="Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: file CLAUDE.md.">
 <meta property="og:site_name" content="TechPuls">
-<meta property="og:title" content="Claude Code: datoteka CLAUDE.md i naredba /init – TechPuls">
-<meta property="og:description" content="Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: datoteka CLAUDE.md.">
+<meta property="og:title" content="Claude Code: file CLAUDE.md i naredba /init – TechPuls">
+<meta property="og:description" content="Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: file CLAUDE.md.">
 <meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
 <meta property="og:url" content="https://zg2000fs.github.io/techpuls/claude-code/claude-md/">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,13 +26,13 @@
 <main>
 <header class="top">
   <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
-  <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+  <a class="yt cc" href="../../claude-code/">Claude Code</a> <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
 </header>
 
 <article class="post guide-steps">
   <p class="meta"><a href="../../claude-code/">← Claude Code za početnike</a></p>
-  <h1>Claude Code: datoteka CLAUDE.md i naredba /init</h1>
-  <p class="lead">Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: datoteka CLAUDE.md.</p>
+  <h1>Claude Code: file CLAUDE.md i naredba /init</h1>
+  <p class="lead">Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: file CLAUDE.md.</p>
   
   <div class="body">
   
@@ -45,15 +45,15 @@
     
   
     <h2>2. Stvori ga naredbom /init</h2>
-    <p>Pokreni Claude Code u mapi projekta i upiši naredbu. Claude pregleda projekt i sam napiše početnu verziju datoteke s naredbama za izradu, uputama za testiranje i dogovorima koje otkrije.</p>
+    <p>Pokreni Claude Code u folderu projekta i upiši naredbu. Claude pregleda projekt i sam napiše početnu verziju filea s naredbama za izradu, uputama za testiranje i dogovorima koje otkrije.</p>
     
     <div class="code"><pre>/init</pre><button type="button" class="copy">Kopiraj</button></div>
     
     
     
   
-    <h2>3. Ako datoteka već postoji</h2>
-    <p>Naredba /init u tom slučaju predlaže poboljšanja umjesto da datoteku prepiše.</p><p>Želiš li interaktivni tijek koji te dodatno pita što sve postaviti (datoteke CLAUDE.md, skills i hooks) i prikazuje prijedlog prije pisanja, postavi varijablu okruženja prije pokretanja (u PowerShellu):</p>
+    <h2>3. Ako file već postoji</h2>
+    <p>Naredba /init u tom slučaju predlaže poboljšanja umjesto da file prepiše.</p><p>Želiš li interaktivni tijek koji te dodatno pita što sve postaviti (fileovi CLAUDE.md, skills i hooks) i prikazuje prijedlog prije pisanja, postavi varijablu okruženja prije pokretanja (u PowerShellu):</p>
     
     <div class="code"><pre>$env:CLAUDE_CODE_NEW_INIT = &#34;1&#34;
 claude</pre><button type="button" class="copy">Kopiraj</button></div>
@@ -62,15 +62,15 @@ claude</pre><button type="button" class="copy">Kopiraj</button></div>
     
   
     <h2>4. Neka bude kratka</h2>
-    <p>Savjet iz Anthropicovih materijala: neka datoteka stane u dva ekrana. To je podsjetnik, a ne dokumentacija. Dopuni je uputama koje Claude sam ne bi otkrio.</p>
+    <p>Savjet iz Anthropicovih materijala: neka file ne bude dulji od dva ekrana. To je podsjetnik, a ne dokumentacija. Dopuni ga uputama koje Claude sam ne bi otkrio.</p>
     
     
     
     
     
   
-    <h2>5. Uključi druge datoteke oznakom @</h2>
-    <p>Datoteku možeš uvući u kontekst oznakom @ bilo gdje u CLAUDE.md. Ako putanju želiš samo spomenuti bez uvlačenja, stavi je između obrnutih apostrofa (znak `).</p>
+    <h2>5. Uključi druge fileove oznakom @</h2>
+    <p>File možeš uvući u kontekst oznakom @ bilo gdje u CLAUDE.md. Ako putanju želiš samo spomenuti bez uvlačenja, stavi je između obrnutih apostrofa (znak `).</p>
     
     <div class="code"><pre>See @README for project overview and @package.json for available npm commands for this project.
 

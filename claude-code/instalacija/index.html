@@ -26,7 +26,7 @@
 <main>
 <header class="top">
   <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
-  <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+  <a class="yt cc" href="../../claude-code/">Claude Code</a> <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
 </header>
 
 <article class="post guide-steps">
@@ -61,7 +61,7 @@
     
   
     <h2>4. Pokreni Claude Code i prijavi se</h2>
-    <p>Otvori terminal u mapi svojeg projekta i upiši claude. Pri prvom pokretanju otvorit će se preglednik u kojem se prijaviš svojim Claude računom. Kad je prijava gotova, vidjet ćeš poruku Login successful.</p>
+    <p>Otvori terminal u folderu svojeg projekta i upiši claude. Pri prvom pokretanju otvorit će se browser u kojem se prijaviš svojim Claude računom. Kad je prijava gotova, vidjet ćeš poruku Login successful.</p>
     
     <div class="code"><pre>claude</pre><button type="button" class="copy">Kopiraj</button></div>
     
@@ -78,7 +78,7 @@ claude doctor</pre><button type="button" class="copy">Kopiraj</button></div>
     
   
     <h2>Ako nešto ne radi</h2>
-    <p>Poruka da irm nije prepoznat: otvorio si CMD umjesto PowerShella. Otvori PowerShell (Win + X) ili upotrijebi CMD naredbu iz koraka 3.</p><p>Poruka da claude nije prepoznat: zatvori PowerShell, otvori novi prozor i pokušaj ponovno. Ako se ne popravi, dodaj instalacijsku mapu u PATH ovim naredbama, zatim opet otvori novi prozor:</p>
+    <p>Poruka da irm nije prepoznat: otvorio si CMD umjesto PowerShella. Otvori PowerShell (Win + X) ili upotrijebi CMD naredbu iz koraka 3.</p><p>Poruka da claude nije prepoznat: zatvori PowerShell, otvori novi prozor i pokušaj ponovno. Ako se ne popravi, dodaj instalacijski folder u PATH ovim naredbama, zatim opet otvori novi prozor:</p>
     
     <div class="code"><pre>$currentPath = [Environment]::GetEnvironmentVariable(&#39;PATH&#39;, &#39;User&#39;)
 [Environment]::SetEnvironmentVariable(&#39;PATH&#39;, &#34;$currentPath;$env:USERPROFILE\.local\bin&#34;, &#39;User&#39;)</pre><button type="button" class="copy">Kopiraj</button></div>
@@ -99,7 +99,7 @@ claude doctor</pre><button type="button" class="copy">Kopiraj</button></div>
   <p class="source">Izvor:
   <a href="https://code.claude.com/docs/en/terminal-guide" rel="noopener nofollow">code.claude.com/docs/en/terminal-guide</a>, <a href="https://code.claude.com/docs/en/setup" rel="noopener nofollow">code.claude.com/docs/en/setup</a>.
   Sadržaj je naš sažetak; ako se dokumentacija promijeni, vrijedi ona.</p>
-  <p class="meta">Sljedeći vodič: <a href="../claude-md/">Claude Code: datoteka CLAUDE.md i naredba /init</a></p>
+  <p class="meta">Sljedeći vodič: <a href="../claude-md/">Claude Code: file CLAUDE.md i naredba /init</a></p>
 </article>
 
 <footer>
