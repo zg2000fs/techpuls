@@ -108,3 +108,5 @@ footer{margin-top:56px;font-size:.9rem;color:var(--muted)}
 .cc-banner{display:flex;flex-direction:column;gap:2px;margin:16px 0;padding:14px 18px;border-radius:12px;border:1px solid #d97757;background:rgba(217,119,87,.10);text-decoration:none;color:inherit}
 .cc-banner span{color:var(--muted);font-size:.92rem}
 .cc-banner:hover{background:rgba(217,119,87,.18)}
+.num{display:inline-block;background:#d97757;color:#fff;font-weight:800;border-radius:8px;padding:1px 9px;margin-right:6px}
+.part{color:var(--muted);font-size:.95rem;margin:0 0 6px}
