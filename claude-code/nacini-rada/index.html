@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>Claude Code: načini rada i dozvole – TechPuls</title>
+<meta name="description" content="Claude Code ima više načina rada koji određuju što smije napraviti bez tvog odobrenja. Za početak ostani u ručnom načinu, a plan mode koristi za veće zadatke.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Claude Code: načini rada i dozvole – TechPuls">
+<meta property="og:description" content="Claude Code ima više načina rada koji određuju što smije napraviti bez tvog odobrenja. Za početak ostani u ručnom načinu, a plan mode koristi za veće zadatke.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/claude-code/nacini-rada/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/claude-code/nacini-rada/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+<meta property="og:type" content="website">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post guide-steps">
+  <p class="meta"><a href="../../claude-code/">← Claude Code za početnike</a></p>
+  <h1>Claude Code: načini rada i dozvole</h1>
+  <p class="lead">Claude Code ima više načina rada koji određuju što smije napraviti bez tvog odobrenja. Za početak ostani u ručnom načinu, a plan mode koristi za veće zadatke.</p>
+  
+  <div class="body">
+  
+    <h2>1. Ručni način (default)</h2>
+    <p>Claude pita prije uređivanja datoteka i pokretanja naredbi. Vidiš prikaz promjene i prihvaćaš ili odbijaš svaku.</p>
+    
+    
+    
+    
+    
+  
+    <h2>2. Accept edits</h2>
+    <p>Claude sam prihvaća izmjene datoteka i uobičajene radnje s datotekama (stvaranje mape, premještanje datoteke), a za ostale naredbe i dalje pita. Dobro kad datotekama vjeruješ i želiš brže raditi. Možeš ga uključiti pri pokretanju:</p>
+    
+    <div class="code"><pre>claude --permission-mode acceptEdits</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>3. Plan mode</h2>
+    <p>Claude čita datoteke i istražuje, pa predloži plan bez izmjena izvornog koda. Dobro za složene zadatke kad prvo želiš pregledati pristup.</p>
+    
+    
+    
+    
+    
+  
+    <h2>4. Promjena načina tijekom sesije</h2>
+    <p>Tipkama Shift + Tab prolaziš kroz načine: ručni, accept edits, plan. Aktivni način piše u statusnoj traci (npr. plan mode on, accept edits on).</p>
+    
+    <div class="code"><pre>Shift + Tab</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>5. Bypass permissions: oprez</h2>
+    <p>Radi bez pitanja za dozvole. Dokumentacija upozorava: koristi ga samo u izoliranim spremnicima ili virtualnim strojevima, ne na računalu s važnim podacima.</p>
+    
+    <div class="code"><pre>claude --permission-mode bypassPermissions</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>Što još postoji</h2>
+    <p>Auto način (klasifikator provjerava je li radnja u skladu s tvojim zahtjevom) pojavljuje se samo kad je dostupan na tvom računu. Detalje i pravila dozvola vidi u službenoj dokumentaciji.</p>
+    
+    
+    
+    
+    
+  
+  </div>
+  <div class="aff-box"><a href="https://claude.ai/referral/el1pjGmy0Q?s=android" target="_blank" rel="sponsored noopener"><strong>Isprobaj Claude: tjedan dana Pro besplatno</strong></a> <small>(partnerska poveznica: ako se preko nje pretplatiš, TechPuls može dobiti nagradu, a tebe to ne košta ništa)</small></div>
+  <p class="source">Izvor:
+  <a href="https://code.claude.com/docs/en/permission-modes" rel="noopener nofollow">code.claude.com/docs/en/permission-modes</a>.
+  Sadržaj je naš sažetak; ako se dokumentacija promijeni, vrijedi ona.</p>
+  <p class="meta">Sljedeći vodič: uskoro</p>
+</article>
+
+<footer>
+  <a href="../../en/" hreflang="en" lang="en">English edition</a> · <a href="../../claude-code/">Claude Code za početnike</a> · <a href="../../alati/">Alati o kojima pišemo</a> · <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+
+<script>
+document.querySelectorAll('.code .copy').forEach(btn => btn.addEventListener('click', async () => {
+  const text = btn.parentElement.querySelector('pre').innerText;
+  try { await navigator.clipboard.writeText(text); } catch (e) {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e2) {} ta.remove();
+  }
+  btn.textContent = 'Kopirano'; btn.classList.add('ok');
+  setTimeout(() => { btn.textContent = 'Kopiraj'; btn.classList.remove('ok'); }, 1800);
+}));
+</script>
+
+</body>
+</html>

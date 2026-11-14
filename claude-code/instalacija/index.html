@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>Claude Code na Windowsu: instalacija korak po korak – TechPuls</title>
+<meta name="description" content="Claude Code je Anthropicov alat koji radi u tekstualnom prozoru (terminalu) i može čitati, mijenjati i pokretati kod u tvom projektu. Ovaj vodič vodi te kroz instalaciju na Windowsu, čak i ako nikad nisi koristio terminal.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Claude Code na Windowsu: instalacija korak po korak – TechPuls">
+<meta property="og:description" content="Claude Code je Anthropicov alat koji radi u tekstualnom prozoru (terminalu) i može čitati, mijenjati i pokretati kod u tvom projektu. Ovaj vodič vodi te kroz instalaciju na Windowsu, čak i ako nikad nisi koristio terminal.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/claude-code/instalacija/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/claude-code/instalacija/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+<meta property="og:type" content="website">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post guide-steps">
+  <p class="meta"><a href="../../claude-code/">← Claude Code za početnike</a></p>
+  <h1>Claude Code na Windowsu: instalacija korak po korak</h1>
+  <p class="lead">Claude Code je Anthropicov alat koji radi u tekstualnom prozoru (terminalu) i može čitati, mijenjati i pokretati kod u tvom projektu. Ovaj vodič vodi te kroz instalaciju na Windowsu, čak i ako nikad nisi koristio terminal.</p>
+  
+  <div class="body">
+  
+    <h2>1. Što ti treba</h2>
+    <ul><li>Windows 10 (verzija 1809 ili novija) ili noviji sustav.</li><li>Najmanje 4 GB RAM-a i internetska veza.</li><li>Plaćeni Claude račun: Pro, Max, Ultra, Team, Enterprise ili Console račun. Besplatni claude.ai plan ne uključuje Claude Code.</li><li>Git for Windows nije obavezan. Ako ga instaliraš, Claude Code ga koristi za neke naredbe; bez njega koristi PowerShell.</li></ul>
+    <div class="aff-box"><a href="https://claude.ai/referral/el1pjGmy0Q?s=android" target="_blank" rel="sponsored noopener"><strong>Isprobaj Claude: tjedan dana Pro besplatno</strong></a> <small>(partnerska poveznica)</small></div>
+    
+    
+    
+    
+  
+    <h2>2. Otvori PowerShell</h2>
+    <p>Pritisni tipke Win + X i odaberi Windows PowerShell (ili Terminal). Otvorit će se prozor s trepćućim kursorom: tamo upisuješ naredbe.</p><p>Provjeri koji prozor imaš: u PowerShellu redak počinje s PS C:\Users\TvojeIme&gt;, a u CMD-u samo s C:\Users\TvojeIme&gt;. Za sljedeći korak treba ti PowerShell.</p>
+    
+    
+    
+    
+    
+  
+    <h2>3. Instaliraj Claude Code</h2>
+    <p>Kopiraj naredbu, zalijepi je u PowerShell (Ctrl + V ili desni klik) i pritisni Enter. Administratorska prava nisu potrebna.</p><p>Tijekom preuzimanja ne prikazuje se napredak. Ostavi prozor otvoren dok ne vidiš poruku Claude Code successfully installed!</p>
+    
+    <div class="code"><pre>irm https://claude.ai/install.ps1 | iex</pre><button type="button" class="copy">Kopiraj</button></div>
+    <p>Ako si slučajno u CMD-u, umjesto toga upotrijebi ovu naredbu:</p>
+    <div class="code"><pre>curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+  
+    <h2>4. Pokreni Claude Code i prijavi se</h2>
+    <p>Otvori terminal u mapi svojeg projekta i upiši claude. Pri prvom pokretanju otvorit će se preglednik u kojem se prijaviš svojim Claude računom. Kad je prijava gotova, vidjet ćeš poruku Login successful.</p>
+    
+    <div class="code"><pre>claude</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>5. Provjeri da sve radi</h2>
+    <p>Otvori novi prozor PowerShella i provjeri instalaciju. Uspješna instalacija ispisuje broj verzije. Naredba doctor prikazuje dijagnostiku instalacije i postavki.</p>
+    
+    <div class="code"><pre>claude --version
+claude doctor</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>Ako nešto ne radi</h2>
+    <p>Poruka da irm nije prepoznat: otvorio si CMD umjesto PowerShella. Otvori PowerShell (Win + X) ili upotrijebi CMD naredbu iz koraka 3.</p><p>Poruka da claude nije prepoznat: zatvori PowerShell, otvori novi prozor i pokušaj ponovno. Ako se ne popravi, dodaj instalacijsku mapu u PATH ovim naredbama, zatim opet otvori novi prozor:</p>
+    
+    <div class="code"><pre>$currentPath = [Environment]::GetEnvironmentVariable(&#39;PATH&#39;, &#39;User&#39;)
+[Environment]::SetEnvironmentVariable(&#39;PATH&#39;, &#34;$currentPath;$env:USERPROFILE\.local\bin&#34;, &#39;User&#39;)</pre><button type="button" class="copy">Kopiraj</button></div>
+    <p>SSL/TLS greška na starijem Windowsu 10: prvo pokreni ovaj redak, pa ponovi instalaciju:</p>
+    <div class="code"><pre>[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12</pre><button type="button" class="copy">Kopiraj</button></div>
+    <p>Poruka o 32-bitnom Windowsu na 64-bitnom računalu: otvorio si Windows PowerShell (x86). Otvori onaj bez (x86) u imenu.</p>
+  
+    <h2>Alternative</h2>
+    <p>WinGet: umjesto naredbe iz koraka 3 možeš upotrijebiti Windows upravitelj paketa. Ne ažurira se sam: povremeno pokreni winget upgrade Anthropic.ClaudeCode.</p><p>Bez terminala: postoji i Claude aplikacija za Windows koja ne traži terminal.</p>
+    
+    <div class="code"><pre>winget install Anthropic.ClaudeCode</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+  </div>
+  <div class="aff-box"><a href="https://claude.ai/referral/el1pjGmy0Q?s=android" target="_blank" rel="sponsored noopener"><strong>Isprobaj Claude: tjedan dana Pro besplatno</strong></a> <small>(partnerska poveznica: ako se preko nje pretplatiš, TechPuls može dobiti nagradu, a tebe to ne košta ništa)</small></div>
+  <p class="source">Izvor:
+  <a href="https://code.claude.com/docs/en/terminal-guide" rel="noopener nofollow">code.claude.com/docs/en/terminal-guide</a>, <a href="https://code.claude.com/docs/en/setup" rel="noopener nofollow">code.claude.com/docs/en/setup</a>.
+  Sadržaj je naš sažetak; ako se dokumentacija promijeni, vrijedi ona.</p>
+  <p class="meta">Sljedeći vodič: <a href="../claude-md/">Claude Code: datoteka CLAUDE.md i naredba /init</a></p>
+</article>
+
+<footer>
+  <a href="../../en/" hreflang="en" lang="en">English edition</a> · <a href="../../claude-code/">Claude Code za početnike</a> · <a href="../../alati/">Alati o kojima pišemo</a> · <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+
+<script>
+document.querySelectorAll('.code .copy').forEach(btn => btn.addEventListener('click', async () => {
+  const text = btn.parentElement.querySelector('pre').innerText;
+  try { await navigator.clipboard.writeText(text); } catch (e) {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e2) {} ta.remove();
+  }
+  btn.textContent = 'Kopirano'; btn.classList.add('ok');
+  setTimeout(() => { btn.textContent = 'Kopiraj'; btn.classList.remove('ok'); }, 1800);
+}));
+</script>
+
+</body>
+</html>

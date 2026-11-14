@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>Claude Code: datoteka CLAUDE.md i naredba /init – TechPuls</title>
+<meta name="description" content="Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: datoteka CLAUDE.md.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Claude Code: datoteka CLAUDE.md i naredba /init – TechPuls">
+<meta property="og:description" content="Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: datoteka CLAUDE.md.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/claude-code/claude-md/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/claude-code/claude-md/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+<meta property="og:type" content="website">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post guide-steps">
+  <p class="meta"><a href="../../claude-code/">← Claude Code za početnike</a></p>
+  <h1>Claude Code: datoteka CLAUDE.md i naredba /init</h1>
+  <p class="lead">Ako Claudeu u svakoj sesiji iznova objašnjavaš kako se gradi tvoj projekt, postoji jednokratno rješenje: datoteka CLAUDE.md.</p>
+  
+  <div class="body">
+  
+    <h2>1. Što je CLAUDE.md</h2>
+    <p>To je običan tekstualni dokument u tvom projektu s naredbama za izradu i testiranje, opisom arhitekture i dogovorima o načinu rada. Svaka sljedeća sesija u tom projektu automatski počinje od njega, pa ne moraš svaki put ponavljati iste upute.</p>
+    
+    
+    
+    
+    
+  
+    <h2>2. Stvori ga naredbom /init</h2>
+    <p>Pokreni Claude Code u mapi projekta i upiši naredbu. Claude pregleda projekt i sam napiše početnu verziju datoteke s naredbama za izradu, uputama za testiranje i dogovorima koje otkrije.</p>
+    
+    <div class="code"><pre>/init</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>3. Ako datoteka već postoji</h2>
+    <p>Naredba /init u tom slučaju predlaže poboljšanja umjesto da datoteku prepiše.</p><p>Želiš li interaktivni tijek koji te dodatno pita što sve postaviti (datoteke CLAUDE.md, skills i hooks) i prikazuje prijedlog prije pisanja, postavi varijablu okruženja prije pokretanja (u PowerShellu):</p>
+    
+    <div class="code"><pre>$env:CLAUDE_CODE_NEW_INIT = &#34;1&#34;
+claude</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>4. Neka bude kratka</h2>
+    <p>Savjet iz Anthropicovih materijala: neka datoteka stane u dva ekrana. To je podsjetnik, a ne dokumentacija. Dopuni je uputama koje Claude sam ne bi otkrio.</p>
+    
+    
+    
+    
+    
+  
+    <h2>5. Uključi druge datoteke oznakom @</h2>
+    <p>Datoteku možeš uvući u kontekst oznakom @ bilo gdje u CLAUDE.md. Ako putanju želiš samo spomenuti bez uvlačenja, stavi je između obrnutih apostrofa (znak `).</p>
+    
+    <div class="code"><pre>See @README for project overview and @package.json for available npm commands for this project.
+
+# Additional Instructions
+- git workflow @docs/git-instructions.md</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+  </div>
+  <div class="aff-box"><a href="https://claude.ai/referral/el1pjGmy0Q?s=android" target="_blank" rel="sponsored noopener"><strong>Isprobaj Claude: tjedan dana Pro besplatno</strong></a> <small>(partnerska poveznica: ako se preko nje pretplatiš, TechPuls može dobiti nagradu, a tebe to ne košta ništa)</small></div>
+  <p class="source">Izvor:
+  <a href="https://code.claude.com/docs/en/memory" rel="noopener nofollow">code.claude.com/docs/en/memory</a>, <a href="https://code.claude.com/docs/en/commands" rel="noopener nofollow">code.claude.com/docs/en/commands</a>.
+  Sadržaj je naš sažetak; ako se dokumentacija promijeni, vrijedi ona.</p>
+  <p class="meta">Sljedeći vodič: <a href="../nacini-rada/">Claude Code: načini rada i dozvole</a></p>
+</article>
+
+<footer>
+  <a href="../../en/" hreflang="en" lang="en">English edition</a> · <a href="../../claude-code/">Claude Code za početnike</a> · <a href="../../alati/">Alati o kojima pišemo</a> · <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+
+<script>
+document.querySelectorAll('.code .copy').forEach(btn => btn.addEventListener('click', async () => {
+  const text = btn.parentElement.querySelector('pre').innerText;
+  try { await navigator.clipboard.writeText(text); } catch (e) {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e2) {} ta.remove();
+  }
+  btn.textContent = 'Kopirano'; btn.classList.add('ok');
+  setTimeout(() => { btn.textContent = 'Kopiraj'; btn.classList.remove('ok'); }, 1800);
+}));
+</script>
+
+</body>
+</html>
