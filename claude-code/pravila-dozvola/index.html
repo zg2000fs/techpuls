@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>Claude Code: pravila dozvola i zaštita lozinki – TechPuls</title>
+<meta name="description" content="Pravila dozvola određuju što Claude Code smije napraviti bez pitanja (allow), kada mora pitati (ask) i što nikad ne smije (deny). Pravila provodi sam Claude Code, pa ih upute u razgovoru ili CLAUDE.md ne mogu zaobići.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Claude Code: pravila dozvola i zaštita lozinki – TechPuls">
+<meta property="og:description" content="Pravila dozvola određuju što Claude Code smije napraviti bez pitanja (allow), kada mora pitati (ask) i što nikad ne smije (deny). Pravila provodi sam Claude Code, pa ih upute u razgovoru ili CLAUDE.md ne mogu zaobići.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/claude-code/pravila-dozvola/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/claude-code/pravila-dozvola/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+<meta property="og:type" content="website">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt cc" href="../../claude-code/">Claude Code</a> <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post guide-steps">
+  <p class="meta"><a href="../../claude-code/">← Claude Code za početnike</a></p>
+  <p class="part"><span class="num">#7</span> Claude Code za početnike · dio 7 od 8 · prethodno: <a href="../mcp/">#6</a> · sljedeće: <a href="../vs-code/">#8</a></p>
+  <h1>Claude Code: pravila dozvola i zaštita lozinki</h1>
+  <p class="lead">Pravila dozvola određuju što Claude Code smije napraviti bez pitanja (allow), kada mora pitati (ask) i što nikad ne smije (deny). Pravila provodi sam Claude Code, pa ih upute u razgovoru ili CLAUDE.md ne mogu zaobići.</p>
+  
+  <div class="body">
+  
+    <h2>1. /permissions</h2>
+    <p>Unutar Claude Codea /permissions prikazuje sva pravila i iz kojeg settings.json fajla dolazi svako. Tu možeš i dodati ili obrisati pravilo; promjena vrijedi od sljedeće Claudeove radnje.</p>
+    
+    <div class="code"><pre>/permissions</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>2. Gdje su postavke na Windowsu</h2>
+    <p>Osobne, za sve projekte: C:\Users\&lt;tvoje-ime&gt;\.claude\settings.json. Projektne, dijele se s timom preko gita: &lt;projekt&gt;\.claude\settings.json. Samo tvoje, za jedan projekt (ne ide u git): &lt;projekt&gt;\.claude\settings.local.json. Osobne otvoriš u PowerShellu ovako:</p>
+    
+    <div class="code"><pre>notepad $HOME\.claude\settings.json</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>3. Primjer: dopusti i zabrani</h2>
+    <p>Primjer iz dokumentacije: dvije naredbe smiju bez pitanja, a fileovi .env (lozinke i ključevi) se ne smiju čitati. Fajl mora biti ispravan JSON: bez komentara i bez zareza iza zadnje stavke.</p>
+    
+    <div class="code"><pre>{
+  &#34;$schema&#34;: &#34;https://json.schemastore.org/claude-code-settings.json&#34;,
+  &#34;permissions&#34;: {
+    &#34;allow&#34;: [
+      &#34;Bash(npm run lint)&#34;,
+      &#34;Bash(npm run test *)&#34;
+    ],
+    &#34;deny&#34;: [
+      &#34;Read(./.env)&#34;,
+      &#34;Read(./.env.*)&#34;
+    ]
+  }
+}</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>4. Kako se pravila pišu</h2>
+    <p>Oblik je Alat ili Alat(točno što). Bash(npm run build) dopušta točno tu naredbu, a * znači bilo što, npr. Bash(git log *). Stavi * iza cijele naredbe: Bash(git *) bi dopustio svaku git naredbu. Read(./.env) se odnosi na čitanje fajla .env, a WebFetch(domain:example.com) na dohvat s te stranice.</p><p>Redoslijed je uvijek: deny, pa ask, pa allow. Prvo pravilo koje odgovara odlučuje, pa zabrana pobjeđuje i kad postoji uže dopuštenje.</p>
+    
+    
+    
+    
+    
+  
+    <h2>5. &#34;Da, ne pitaj više&#34;</h2>
+    <p>Kad odobriš naredbu i odabereš da te više ne pita, Claude Code to spremi kao pravilo u .claude\settings.local.json u folderu u kojem si ga pokrenuo (za naredbe trajno, za izmjene fajlova samo do kraja sesije).</p><p>Napomena: pravilo Read zabranjuje Claudeovim alatima čitanje tog fajla, ali ne i naredbu koja čita sve fajlove odjednom ili skriptu koja ga sama otvori. Za strožu zaštitu dokumentacija preporučuje sandbox.</p>
+    <div class="aff-box"><a href="https://claude.ai/referral/el1pjGmy0Q?s=android" target="_blank" rel="sponsored noopener"><strong>Isprobaj Claude: tjedan dana Pro besplatno</strong></a> <small>(partnerska poveznica: ako se preko nje pretplatiš, TechPuls može dobiti nagradu, a tebe to ne košta ništa)</small></div>
+    
+    
+    
+    
+  
+  </div>
+  
+  
+  <p class="source">Izvor:
+  <a href="https://code.claude.com/docs/en/permissions" rel="noopener nofollow">code.claude.com/docs/en/permissions</a>, <a href="https://code.claude.com/docs/en/settings" rel="noopener nofollow">code.claude.com/docs/en/settings</a>.
+  Sadržaj je naš sažetak; ako se dokumentacija promijeni, vrijedi ona.</p>
+  <p class="meta">Sljedeći vodič: <a href="../vs-code/">Claude Code u VS Codeu</a></p>
+</article>
+
+<footer>
+  <a href="../../en/" hreflang="en" lang="en">English edition</a> · <a href="../../claude-code/">Claude Code za početnike</a> · <a href="../../alati/">Alati o kojima pišemo</a> · <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+
+<script>
+document.querySelectorAll('.code .copy').forEach(btn => btn.addEventListener('click', async () => {
+  const text = btn.parentElement.querySelector('pre').innerText;
+  try { await navigator.clipboard.writeText(text); } catch (e) {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e2) {} ta.remove();
+  }
+  btn.textContent = 'Kopirano'; btn.classList.add('ok');
+  setTimeout(() => { btn.textContent = 'Kopiraj'; btn.classList.remove('ok'); }, 1800);
+}));
+</script>
+
+<script>
+// Klik na partnersku poveznicu broji se anonimno na istom brojaču kao čitanja (bez kolačića i osobnih podataka):
+// samo "povećaj brojač za ovog partnera". Urednik 23.11.2026.
+document.addEventListener('click', ev => {
+  const a = ev.target.closest('a[rel~="sponsored"]');
+  if (!a) return;
+  let host = '';
+  try { host = new URL(a.href).hostname.replace(/^www\./, '').replace(/[^a-z0-9]+/g, '-'); } catch (e) { return; }
+  try { fetch('https://abacus.jasoncameron.dev/hit/techpuls-zg2000fs/aff-' + host, { keepalive: true, mode: 'no-cors' }); } catch (e) {}
+});
+</script>
+</body>
+</html>
