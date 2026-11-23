@@ -70,7 +70,7 @@
   <span class="votes-q">Je li vam se svidio članak?</span>
   <button type="button" class="vote" data-kind="like" aria-label="Sviđa mi se">👍 <span>0</span></button>
   <button type="button" class="vote" data-kind="dislike" aria-label="Ne sviđa mi se">👎 <span>0</span></button>
-  <span class="views" title="Broj čitanja">👁 0</span>
+  <span class="views" title="Broj čitanja">👁 8</span>
 </div>
   
   <section class="related">
@@ -146,6 +146,17 @@
     }).catch(() => {});
   }
 })();
+</script>
+<script>
+// Klik na partnersku poveznicu broji se anonimno na istom brojaču kao čitanja (bez kolačića i osobnih podataka):
+// samo "povećaj brojač za ovog partnera". Urednik 23.11.2026.
+document.addEventListener('click', ev => {
+  const a = ev.target.closest('a[rel~="sponsored"]');
+  if (!a) return;
+  let host = '';
+  try { host = new URL(a.href).hostname.replace(/^www\./, '').replace(/[^a-z0-9]+/g, '-'); } catch (e) { return; }
+  try { fetch('https://abacus.jasoncameron.dev/hit/techpuls-zg2000fs/aff-' + host, { keepalive: true, mode: 'no-cors' }); } catch (e) {}
+});
 </script>
 </body>
 </html>
