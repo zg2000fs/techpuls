@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://zg2000fs.github.io/techpuls/</loc><lastmod>2026-11-23</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/</loc><lastmod>2026-11-24</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/c/41660/</loc><lastmod>2026-11-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/c/41192/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/c/40816/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/c/41565/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/c/41177/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/c/40223/</loc><lastmod>2026-11-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/c/40219/</loc><lastmod>2026-11-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -377,16 +380,16 @@
   <url><loc>https://zg2000fs.github.io/techpuls/c/38039/</loc><lastmod>2026-08-06</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/c/24619/</loc><lastmod>2026-07-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/c/24622/</loc><lastmod>2026-03-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/en/</loc><lastmod>2026-11-23</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/instalacija/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/claude-md/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/nacini-rada/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/slash-naredbe/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/skills/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/mcp/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/pravila-dozvola/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/vs-code/</loc><lastmod>2026-11-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/en/</loc><lastmod>2026-11-24</lastmod><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/</loc><lastmod>2026-11-24</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/instalacija/</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/claude-md/</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/nacini-rada/</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/slash-naredbe/</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/skills/</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/mcp/</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/pravila-dozvola/</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://zg2000fs.github.io/techpuls/claude-code/vs-code/</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/en/c/39675/</loc><lastmod>2026-11-22</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/en/c/41177/</loc><lastmod>2026-11-23</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://zg2000fs.github.io/techpuls/en/c/40118/</loc><lastmod>2026-11-22</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
