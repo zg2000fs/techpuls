@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="F6XkzdNPhxd0bDnRZScfaQSCeMe0_pVclkc7NNvMqE0" />
+<meta name="msvalidate.01" content="66B7EFF1C05D55152E013DCE4F69D117" />
+<title>Claude Code: subagenti – TechPuls</title>
+<meta name="description" content="Subagenti su specijalizirani pomoćnici. Svaki radi u svom prozoru konteksta, sa svojim uputama i alatima, i glavnom razgovoru vrati samo sažetak. Korisni su kad bi sporedni zadatak (pretraživanje, logovi, puno fajlova) zatrpao glavni razgovor.">
+<meta property="og:site_name" content="TechPuls">
+<meta property="og:title" content="Claude Code: subagenti – TechPuls">
+<meta property="og:description" content="Subagenti su specijalizirani pomoćnici. Svaki radi u svom prozoru konteksta, sa svojim uputama i alatima, i glavnom razgovoru vrati samo sažetak. Korisni su kad bi sporedni zadatak (pretraživanje, logovi, puno fajlova) zatrpao glavni razgovor.">
+<meta property="og:image" content="https://zg2000fs.github.io/techpuls/assets/og-image.png">
+<meta property="og:url" content="https://zg2000fs.github.io/techpuls/claude-code/subagenti/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://zg2000fs.github.io/techpuls/claude-code/subagenti/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="icon" href="../../assets/logo_mark.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#13233a">
+<meta property="og:type" content="website">
+</head>
+<body>
+<main>
+<header class="top">
+  <a href="../../" class="logo"><img src="../../assets/logo_dark.svg" alt="TechPuls" class="only-light"><img src="../../assets/logo_light.svg" alt="TechPuls" class="only-dark"></a>
+  <a class="yt cc" href="../../claude-code/">Claude Code</a> <a class="yt" href="../../en/" hreflang="en" lang="en">English</a> <a class="yt" href="https://www.youtube.com/@techpulshr" rel="noopener">▶ YouTube</a>
+</header>
+
+<article class="post guide-steps">
+  <p class="meta"><a href="../../claude-code/">← Claude Code za početnike</a></p>
+  <p class="part"><span class="num">#9</span> Claude Code za početnike · dio 9 od 10 · prethodno: <a href="../vs-code/">#8</a> · sljedeće: <a href="../slike/">#10</a></p>
+  <h1>Claude Code: subagenti</h1>
+  <p class="lead">Subagenti su specijalizirani pomoćnici. Svaki radi u svom prozoru konteksta, sa svojim uputama i alatima, i glavnom razgovoru vrati samo sažetak. Korisni su kad bi sporedni zadatak (pretraživanje, logovi, puno fajlova) zatrpao glavni razgovor.</p>
+  
+  <div class="body">
+  
+    <h2>1. Ugrađeni subagenti</h2>
+    <p>Explore: brzo pretraživanje i analiza koda, samo čita. Plan: prikuplja informacije u načinu planiranja, samo čita. general-purpose: složeni zadaci u više koraka, i istražuje i mijenja. Claude ih poziva sam kad zatreba.</p>
+    
+    
+    
+    
+    
+  
+    <h2>2. Gdje žive tvoji subagenti</h2>
+    <p>Za jedan projekt (dijeli se s timom preko gita): &lt;projekt&gt;\.claude\agents\. Za sve tvoje projekte: C:\Users\&lt;tvoje-ime&gt;\.claude\agents\. Ako dva imaju isto ime, vrijedi onaj iz projekta. Najlakše ga napraviš tako da zamoliš Claudea da ga napravi i kažeš gdje da ga spremi; ako ga ne nađe, ponovno pokreni Claude Code.</p>
+    
+    
+    
+    
+    
+  
+    <h2>3. Primjer: pregled koda</h2>
+    <p>Fajl .claude\agents\code-reviewer.md (primjer iz dokumentacije). Obavezni su samo name i description; tools ograničava alate (ako ga izostaviš, nasljeđuje sve), a model bira model.</p>
+    
+    <div class="code"><pre>---
+name: code-reviewer
+description: Reviews code for quality and best practices
+tools: Read, Glob, Grep
+model: sonnet
+---
+
+You are a code reviewer. When invoked, analyze the code and provide
+specific, actionable feedback on quality, security, and best practices.</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+    
+    
+  
+    <h2>4. Kako ga pozvati</h2>
+    <p>Običnom rečenicom, bez posebne sintakse, ili spomenom s @. Claude ga poziva i sam kad zahtjev odgovara opisu (description); ako želiš da ga koristi češće, u opis dodaj &#34;use proactively&#34;.</p>
+    
+    <div class="code"><pre>Use the code-reviewer subagent to check my changes</pre><button type="button" class="copy">Kopiraj</button></div>
+    <p>Ili spomenom:</p>
+    <div class="code"><pre>@&#34;code-reviewer (agent)&#34; look at the auth changes</pre><button type="button" class="copy">Kopiraj</button></div>
+    
+  
+    <h2>5. Na što paziti</h2>
+    <p>Svaki subagent dok radi troši svoje tokene. Ograničenje alata nije sandbox: subagent bez Edit i Write može mijenjati fajlove preko terminala (Bash) ako mu je on dopušten; za to dodaj pravilo deny (sedmi vodič). Neka opisi budu kratki.</p>
+    <div class="aff-box"><a href="https://claude.ai/referral/el1pjGmy0Q?s=android" target="_blank" rel="sponsored noopener"><strong>Isprobaj Claude: tjedan dana Pro besplatno</strong></a> <small>(partnerska poveznica: ako se preko nje pretplatiš, TechPuls može dobiti nagradu, a tebe to ne košta ništa)</small></div>
+    
+    
+    
+    
+  
+  </div>
+  
+  
+  <p class="source">Izvor:
+  <a href="https://code.claude.com/docs/en/sub-agents" rel="noopener nofollow">code.claude.com/docs/en/sub-agents</a>.
+  Sadržaj je naš sažetak; ako se dokumentacija promijeni, vrijedi ona.</p>
+  <p class="meta">Sljedeći vodič: <a href="../slike/">Claude Code: slike i snimke zaslona</a></p>
+</article>
+
+<footer>
+  <a href="../../en/" hreflang="en" lang="en">English edition</a> · <a href="../../claude-code/">Claude Code za početnike</a> · <a href="../../alati/">Alati o kojima pišemo</a> · <a href="../../privacy.html">Pravila privatnosti</a> · <a href="../../terms.html">Uvjeti korištenja</a> · © 2026 TechPuls
+</footer>
+</main>
+
+<script>
+document.querySelectorAll('.code .copy').forEach(btn => btn.addEventListener('click', async () => {
+  const text = btn.parentElement.querySelector('pre').innerText;
+  try { await navigator.clipboard.writeText(text); } catch (e) {
+    const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e2) {} ta.remove();
+  }
+  btn.textContent = 'Kopirano'; btn.classList.add('ok');
+  setTimeout(() => { btn.textContent = 'Kopiraj'; btn.classList.remove('ok'); }, 1800);
+}));
+</script>
+
+<script>
+// Klik na partnersku poveznicu broji se anonimno na istom brojaču kao čitanja (bez kolačića i osobnih podataka):
+// samo "povećaj brojač za ovog partnera". Urednik 23.11.2026.
+document.addEventListener('click', ev => {
+  const a = ev.target.closest('a[rel~="sponsored"]');
+  if (!a) return;
+  let host = '';
+  try { host = new URL(a.href).hostname.replace(/^www\./, '').replace(/[^a-z0-9]+/g, '-'); } catch (e) { return; }
+  try { fetch('https://abacus.jasoncameron.dev/hit/techpuls-zg2000fs/aff-' + host, { keepalive: true, mode: 'no-cors' }); } catch (e) {}
+});
+</script>
+</body>
+</html>
